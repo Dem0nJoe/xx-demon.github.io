@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ksweb搭建Web服务器+Termux、Ngrok实现内网穿透 | DemonJoe_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。  写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头（滑稽）本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透">
+<meta property="og:url" content="http://example.com/2022/02/01/2-phoneWeb/index.html">
+<meta property="og:site_name" content="DemonJoe_Blog">
+<meta property="og:description" content="博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。  写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头（滑稽）本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/2-ksWebConfig.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/3-webDir.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/4-webDir.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/5-webIndex.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/6-ngroc.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/7-ngrocManager.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/8-pythonNgroc.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/9-pythonNgroc.png">
+<meta property="og:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/10-endWebIndex.png">
+<meta property="article:published_time" content="2022-02-01T11:01:28.769Z">
+<meta property="article:modified_time" content="2022-02-01T12:36:29.124Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/02/01/2-phoneWeb/images/2-phoneWeb/2-ksWebConfig.png">
+  
+    <link rel="alternate" href="/atom.xml" title="DemonJoe_Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DemonJoe_Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2-phoneWeb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/01/2-phoneWeb/" class="article-date">
+  <time class="dt-published" datetime="2022-02-01T11:01:28.769Z" itemprop="datePublished">2022-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E7%BD%91%E7%AB%99/">web网站</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      ksweb搭建Web服务器+Termux、Ngrok实现内网穿透
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。
+</code></pre>
+<p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+<p>当然也可以作为砖头（滑稽）本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
+<p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
+<p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
+<p><strong>基本思路：</strong><br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
+<p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
+<p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
+<p>这里我们使用最简单的集成工具ksweb</p>
+<p>基本步骤分为两步：</p>
+<pre><code>1、手机的简单设置搭建内网服务器
+2、内网穿透
+</code></pre>
+<p>使用工具：</p>
+<pre><code>●一部小米4旧手机
+    ●ksweb工具
+    ●termux工具
+●内网穿透工具
+    ●ngrok隧道
+</code></pre>
+<p><strong>开始</strong><br><strong>一、第一阶段：手机的简单设置搭建内网服务器</strong><br><strong>1.1 手机安装ksweb</strong>*<br>我的手机型号是小米4</p>
+<p>在这里插入图片描述</p>
+<p><strong>工具ksweb</strong></p>
+<p>目前为止，手机端搭建web服务器最好用的软件是Ksweb</p>
+<p>这是一款俄罗斯人开发的基于安卓系统的web服务器，集成了php、Nginx、MySQL、Apache、FTP等</p>
+<p>可以百度官网下载软件，不过软件收费，建议支持正版，下面百度了一个破解版版，需要自行下载</p>
+<pre><code>链接：https://wws.lanzoui.com/iQPVqregdpa
+</code></pre>
+<p><em><strong>1.2 打开配置ksweb</strong></em><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
+<p>LigHttpd、Apache、Nginx是三大Web服务器，可以根据自己情况选择，这里我选择默认LigHttpd</p>
+<p><img src="./images/2-phoneWeb/2-ksWebConfig.png" alt="ksweb配置"></p>
+<p>电脑usb连接手机，找到网站文件根目录/mnt/sdcard/htdocs把自己的网页放在该目录下</p>
+<p><img src="./images/2-phoneWeb/3-webDir.png" alt="web文件路径"><br><img src="./images/2-phoneWeb/4-webDir.png" alt="web文件路径"></p>
+<p>然后电脑、手机连接同一个局域网，电脑打开浏览器，输入<a href="http://192.168.0.100:8080访问">http://192.168.0.100:8080访问</a></p>
+<p>若出现自己的网页信息，则成功搭建内网服务器</p>
+<p><img src="./images/2-phoneWeb/5-webIndex.png" alt="web文件路径"></p>
+<p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
+<p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
+<p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
+<p><strong>二、第二阶段：内网穿透</strong><br><em><strong>2.1电脑端操作</strong></em><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<p><img src="./images/2-phoneWeb/6-ngroc.png" alt="web文件路径"></p>
+<p>开通之后点击 隧道管理</p>
+<p><img src="./images/2-phoneWeb/7-ngrocManager.png" alt="web文件路径"></p>
+<p>然后记下自己的隧道id，等会要到手机端操作</p>
+<p><em><strong>2.2手机端操作</strong></em><br>手机端的操作可以参考Ngrok官网手册：<a target="_blank" rel="noopener" href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
+<p>简单就是需要手机端打开命令工具Termux，执行配置文件（我选择的是Python文件），然后输入隧道id开通隧道</p>
+<pre><code>Termux工具以下已提供Termux，需要注意的是Termux下载后初始化需要翻墙连一下外网，这个自行解决。随后会自动初始化配置，配置完后就不用连了，否则进去会一直转圈
+链接：https://f-droid.org/repo/com.termux_117.apk
+</code></pre>
+<p>下载安装之后打开</p>
+<pre><code>●给Android手机安装python
+    pkg install python
+●进入Python客户端所在的目录(如果手机浏览器下载Python脚本，为此目录，然后解压到该目录）
+每个人的浏览器文件下载目录可能不同，根据自己实际情况，也可选择解压到自己找得到的文件目录
+如出现Termux命令行出现打开文件夹目录权限不足的情况，需要找到手机应用权限管理，给予访问手机文件储存的权限
+    cd /storage/emulated/0/Download
+●执行脚本
+    python sunny.py
+</code></pre>
+<p><img src="./images/2-phoneWeb/8-pythonNgroc.png" alt="web文件路径"></p>
+<p><img src="./images/2-phoneWeb/9-pythonNgroc.png" alt="web文件路径"></p>
+<p>上述操作设计一点Linux操作，如果操作不明白，查看上面的Ngrox官网帮助手册，里面有视频介绍~</p>
+<p><em><strong>2.3查看成果</strong></em><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
+<p>这里提示免费的隧道可能随时失效，想要持久稳定还得淦！</p>
+<p>这里贴上自己的个人博客引导页，想要源码的也可私信我~~</p>
+<p><a target="_blank" rel="noopener" href="http://xiaosi.free.idcfengye.com/">http://xiaosi.free.idcfengye.com</a></p>
+<p><img src="./images/2-phoneWeb/10-endWebIndex.png" alt="web文件路径"></p>
+<p>借鉴博客源网址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24654501/article/details/108052368">https://blog.csdn.net/qq_24654501/article/details/108052368</a>~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/01/2-phoneWeb/" data-id="ckz43xk3d0000hgux0k640ac0" data-title="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/02/01/1-blogCreat/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Github个人博客搭建记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E7%BD%91%E7%AB%99/">web网站</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/01/2-phoneWeb/">ksweb搭建Web服务器+Termux、Ngrok实现内网穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/01/1-blogCreat/">Github个人博客搭建记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/01/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

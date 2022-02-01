@@ -71,6 +71,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2-phoneWeb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/01/2-phoneWeb/" class="article-date">
+  <time class="dt-published" datetime="2022-02-01T11:01:28.769Z" itemprop="datePublished">2022-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E7%BD%91%E7%AB%99/">web网站</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/01/2-phoneWeb/">ksweb搭建Web服务器+Termux、Ngrok实现内网穿透</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。
+</code></pre>
+<p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+<p>当然也可以作为砖头（滑稽）本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
+<p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
+<p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
+<p><strong>基本思路：</strong><br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
+<p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
+<p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
+<p>这里我们使用最简单的集成工具ksweb</p>
+<p>基本步骤分为两步：</p>
+<pre><code>1、手机的简单设置搭建内网服务器
+2、内网穿透
+</code></pre>
+<p>使用工具：</p>
+<pre><code>●一部小米4旧手机
+    ●ksweb工具
+    ●termux工具
+●内网穿透工具
+    ●ngrok隧道
+</code></pre>
+<p><strong>开始</strong><br><strong>一、第一阶段：手机的简单设置搭建内网服务器</strong><br><strong>1.1 手机安装ksweb</strong>*<br>我的手机型号是小米4</p>
+<p>在这里插入图片描述</p>
+<p><strong>工具ksweb</strong></p>
+<p>目前为止，手机端搭建web服务器最好用的软件是Ksweb</p>
+<p>这是一款俄罗斯人开发的基于安卓系统的web服务器，集成了php、Nginx、MySQL、Apache、FTP等</p>
+<p>可以百度官网下载软件，不过软件收费，建议支持正版，下面百度了一个破解版版，需要自行下载</p>
+<pre><code>链接：https://wws.lanzoui.com/iQPVqregdpa
+</code></pre>
+<p><em><strong>1.2 打开配置ksweb</strong></em><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
+<p>LigHttpd、Apache、Nginx是三大Web服务器，可以根据自己情况选择，这里我选择默认LigHttpd</p>
+<p><img src="./images/2-phoneWeb/2-ksWebConfig.png" alt="ksweb配置"></p>
+<p>电脑usb连接手机，找到网站文件根目录/mnt/sdcard/htdocs把自己的网页放在该目录下</p>
+<p><img src="./images/2-phoneWeb/3-webDir.png" alt="web文件路径"><br><img src="./images/2-phoneWeb/4-webDir.png" alt="web文件路径"></p>
+<p>然后电脑、手机连接同一个局域网，电脑打开浏览器，输入<a href="http://192.168.0.100:8080访问">http://192.168.0.100:8080访问</a></p>
+<p>若出现自己的网页信息，则成功搭建内网服务器</p>
+<p><img src="./images/2-phoneWeb/5-webIndex.png" alt="web文件路径"></p>
+<p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
+<p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
+<p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
+<p><strong>二、第二阶段：内网穿透</strong><br><em><strong>2.1电脑端操作</strong></em><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<p><img src="./images/2-phoneWeb/6-ngroc.png" alt="web文件路径"></p>
+<p>开通之后点击 隧道管理</p>
+<p><img src="./images/2-phoneWeb/7-ngrocManager.png" alt="web文件路径"></p>
+<p>然后记下自己的隧道id，等会要到手机端操作</p>
+<p><em><strong>2.2手机端操作</strong></em><br>手机端的操作可以参考Ngrok官网手册：<a target="_blank" rel="noopener" href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
+<p>简单就是需要手机端打开命令工具Termux，执行配置文件（我选择的是Python文件），然后输入隧道id开通隧道</p>
+<pre><code>Termux工具以下已提供Termux，需要注意的是Termux下载后初始化需要翻墙连一下外网，这个自行解决。随后会自动初始化配置，配置完后就不用连了，否则进去会一直转圈
+链接：https://f-droid.org/repo/com.termux_117.apk
+</code></pre>
+<p>下载安装之后打开</p>
+<pre><code>●给Android手机安装python
+    pkg install python
+●进入Python客户端所在的目录(如果手机浏览器下载Python脚本，为此目录，然后解压到该目录）
+每个人的浏览器文件下载目录可能不同，根据自己实际情况，也可选择解压到自己找得到的文件目录
+如出现Termux命令行出现打开文件夹目录权限不足的情况，需要找到手机应用权限管理，给予访问手机文件储存的权限
+    cd /storage/emulated/0/Download
+●执行脚本
+    python sunny.py
+</code></pre>
+<p><img src="./images/2-phoneWeb/8-pythonNgroc.png" alt="web文件路径"></p>
+<p><img src="./images/2-phoneWeb/9-pythonNgroc.png" alt="web文件路径"></p>
+<p>上述操作设计一点Linux操作，如果操作不明白，查看上面的Ngrox官网帮助手册，里面有视频介绍~</p>
+<p><em><strong>2.3查看成果</strong></em><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
+<p>这里提示免费的隧道可能随时失效，想要持久稳定还得淦！</p>
+<p>这里贴上自己的个人博客引导页，想要源码的也可私信我~~</p>
+<p><a target="_blank" rel="noopener" href="http://xiaosi.free.idcfengye.com/">http://xiaosi.free.idcfengye.com</a></p>
+<p><img src="./images/2-phoneWeb/10-endWebIndex.png" alt="web文件路径"></p>
+<p>借鉴博客源网址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24654501/article/details/108052368">https://blog.csdn.net/qq_24654501/article/details/108052368</a>~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/01/2-phoneWeb/" data-id="ckz43xk3d0000hgux0k640ac0" data-title="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-1-blogCreat" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/01/1-blogCreat/" class="article-date">
@@ -101,7 +213,7 @@
 </code></pre>
 <h2 id="工具及平台："><a href="#工具及平台：" class="headerlink" title="工具及平台："></a>工具及平台：</h2><p><strong>工具：hexo、git、Node.js、npm/cnpm</strong><br><strong>平台：Windows</strong><br><strong>本文以win10为例进行演示</strong><br><strong>（windows环境需已安装git并配置为环境变量）</strong></p>
 <h2 id="搭建过程："><a href="#搭建过程：" class="headerlink" title="搭建过程："></a>搭建过程：</h2><h3 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h3><h4 id="（1）安装Node-js"><a href="#（1）安装Node-js" class="headerlink" title="（1）安装Node.js"></a>（1）安装Node.js</h4><p><strong>Node.js是一个基于Chrome V8引擎的JavaScript运行环境，能够是js运行在服务端。安装方法非常简单：</strong><br><strong>nodejs.org下载安装即可。推荐下载LTS（Long Time Support）版本</strong></p>
-<p>下载安装Node.js：<br><img src="./images/1-NodejsDownload.png" alt="page"></p>
+<p>下载安装Node.js：<br><img src="./images/1-blogCreat/1-NodejsDownload.png" alt="page"></p>
 <h4 id="（2）安装NPM"><a href="#（2）安装NPM" class="headerlink" title="（2）安装NPM"></a>（2）安装NPM</h4><p><strong>NPM（Node Package Manager）是基于Node.js的包管理工具，方便开发人员分享和获取第三方包并使用。</strong><br><strong>由于NPM镜像是国外资源，安装十分缓慢，因此我们选择安装淘宝团队做的镜像cnpm。在win10环境下，以管理员身份运行CMD，输入以下命令：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
 <p>这样我们便完成了Node.js和NPM的安装，此时我们可以通过查询版本号的方式来验证Node.js和NPM是否安装成功：</p>
@@ -119,7 +231,7 @@
 <p>注意：在macOS或Linux环境需以管理员身份进行操作<br>此时我们就通过hexo完成了博客的初始搭建，hexo会默认创建一个landscape主题。此过程有时较慢，耐心等待。<br>这时我们打开电脑的blog文件夹，会发现生成了许多文件，其中theme文件夹内就是我们博客的主题，后续更改主题需要在此操作。</p>
 <h4 id="（3）启动、生成博客"><a href="#（3）启动、生成博客" class="headerlink" title="（3）启动、生成博客"></a>（3）启动、生成博客</h4><p><strong>启动博客：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>启动后会出现本地访问的端口<br>hexo启动后，在浏览器中输入 localhost:4000 ,就可以进入我们刚刚生成的博客主页了。<br><img src="./images/2-startBlog.png" alt="page"></p>
+<p>启动后会出现本地访问的端口<br>hexo启动后，在浏览器中输入 localhost:4000 ,就可以进入我们刚刚生成的博客主页了。<br><img src="./images/1-blogCreat/2-startBlog.png" alt="page"></p>
 <h4 id="（4）新建文章"><a href="#（4）新建文章" class="headerlink" title="（4）新建文章"></a>（4）新建文章</h4><p><strong>windows环境下推荐直接将写好的文章放在blog/source/_post路径下：</strong><br><strong>当然也可以像macOS或Linux下使用命令行新建文章，然后进行编辑：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;新建的文章&quot;</span><br></pre></td></tr></table></figure>
 <p>博客一般使用markdown格式（.md），非常方便的一种格式，网上有很多介绍，大家可以学习一下。</p>
@@ -127,9 +239,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>至此我们就完成了个人博客的创建，以及如何对博客进行修改等操作。不过我们的博客现在只能通过本地端口（localhost）访问调试，怎么才能让别人看到我们的博客呢？<br>接下来就来介绍如何将博客部署到github上进行访问。</p>
-<h3 id="3、将博客部署到github上"><a href="#3、将博客部署到github上" class="headerlink" title="3、将博客部署到github上"></a>3、将博客部署到github上</h3><h4 id="（1）在github上新建仓库"><a href="#（1）在github上新建仓库" class="headerlink" title="（1）在github上新建仓库"></a>（1）在github上新建仓库</h4><p><strong>仓库名称必须为 xxx.github.io(其中xxx为自己的github用户名)，如codesong99.github.io,并得到仓库地址：</strong><br>github仓库地址：<br><img src="./images/3-theHub.png" alt="page"></p>
+<h3 id="3、将博客部署到github上"><a href="#3、将博客部署到github上" class="headerlink" title="3、将博客部署到github上"></a>3、将博客部署到github上</h3><h4 id="（1）在github上新建仓库"><a href="#（1）在github上新建仓库" class="headerlink" title="（1）在github上新建仓库"></a>（1）在github上新建仓库</h4><p><strong>仓库名称必须为 xxx.github.io(其中xxx为自己的github用户名)，如codesong99.github.io,并得到仓库地址：</strong><br>github仓库地址：<br><img src="./images/1-blogCreat/3-theHub.png" alt="page"></p>
 <h4 id="2）在blog目录下安装一个git的部署插件"><a href="#2）在blog目录下安装一个git的部署插件" class="headerlink" title="2）在blog目录下安装一个git的部署插件"></a>2）在blog目录下安装一个git的部署插件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="./images/4-theConfig.png" alt="page"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为<strong>main</strong>，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
+<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="./images/1-blogCreat/4-theConfig.png" alt="page"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为<strong>main</strong>，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
 <h4 id="（4）将博客部署远端"><a href="#（4）将博客部署远端" class="headerlink" title="（4）将博客部署远端"></a>（4）将博客部署远端</h4><p><strong>回到CMD窗口，在blog目录下输入一下命令，将博客推到远端：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>这个”d”就是deploy的意思。此过程需要输入github账号及密码。<br>至此我们就完成了搭建hexo博客并部署到github上的所有工作，在浏览器中输入xxx.github.io即可访问自己的个人博客。</p>
@@ -237,6 +349,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/02/01/2-phoneWeb/">ksweb搭建Web服务器+Termux、Ngrok实现内网穿透</a>
+          </li>
         
           <li>
             <a href="/2022/02/01/1-blogCreat/">Github个人博客搭建记录</a>
