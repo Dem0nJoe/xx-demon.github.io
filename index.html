@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>DemonJoe_Blog</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
@@ -42,7 +42,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">DemonJoe</a>
+        <a href="/" id="logo">Hexo</a>
       </h1>
       
     </div>
@@ -125,7 +125,7 @@
 <p>至此我们就完成了个人博客的创建，以及如何对博客进行修改等操作。不过我们的博客现在只能通过本地端口（localhost）访问调试，怎么才能让别人看到我们的博客呢？<br>接下来就来介绍如何将博客部署到github上进行访问。</p>
 <h3 id="3、将博客部署到github上"><a href="#3、将博客部署到github上" class="headerlink" title="3、将博客部署到github上"></a>3、将博客部署到github上</h3><h4 id="（1）在github上新建仓库"><a href="#（1）在github上新建仓库" class="headerlink" title="（1）在github上新建仓库"></a>（1）在github上新建仓库</h4><p><strong>仓库名称必须为 xxx.github.io(其中xxx为自己的github用户名)，如codesong99.github.io,并得到仓库地址：</strong><br>github仓库地址：<br><img src="./images/3-theHub.png" alt="page"></p>
 <h4 id="2）在blog目录下安装一个git的部署插件"><a href="#2）在blog目录下安装一个git的部署插件" class="headerlink" title="2）在blog目录下安装一个git的部署插件"></a>2）在blog目录下安装一个git的部署插件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="./images/4-theConfig.png" alt="page"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为master，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
+<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="./images/4-theConfig.png" alt="page"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为<strong>main</strong>，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
 <h4 id="（4）将博客部署远端"><a href="#（4）将博客部署远端" class="headerlink" title="（4）将博客部署远端"></a>（4）将博客部署远端</h4><p><strong>回到CMD窗口，在blog目录下输入一下命令，将博客推到远端：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>这个”d”就是deploy的意思。此过程需要输入github账号及密码。<br>至此我们就完成了搭建hexo博客并部署到github上的所有工作，在浏览器中输入xxx.github.io即可访问自己的个人博客。</p>
