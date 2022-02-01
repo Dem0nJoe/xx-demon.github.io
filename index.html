@@ -97,20 +97,29 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>实现思路:</strong><br>    1、python读取urls.txt所有应用资产</p>
-<pre><code>2、调用rad对urls页面进行爬虫
+        <p><strong>实现思路:</strong></p>
+<pre><code>1、python读取urls.txt所有应用资产
+
+2、调用rad对urls页面进行爬虫
 
 3、爬取到的数据包转发到burp
 
 4、使用burp的log4j插件对数据包所有字段进行POC探测
 </code></pre>
-<p><strong>需要工具:</strong><br>    batch_rad.py</p>
-<pre><code>rad【https://github.com/chaitin/rad】
+<p><strong>需要工具:</strong></p>
+<pre><code>batch_rad.py
+
+rad【https://github.com/chaitin/rad】
 
 burp插件(log4jShell Scanner)【burp插件仓库自带】
 </code></pre>
-<p><strong>batch_rad.py代码如下：</strong><br>    import os<br>    import time<br>    import sys<br>    import datetime</p>
-<pre><code>def globalPath():#文件路径
+<p><strong>batch_rad.py代码如下：</strong></p>
+<pre><code>import os
+import time
+import sys
+import datetime
+
+def globalPath():#文件路径
     global radPath #rad
     global urlPath #url资产
     radPath = r&quot;C:\Users\jues\Desktop\rad\rad.exe&quot;
