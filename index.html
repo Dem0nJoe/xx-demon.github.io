@@ -71,6 +71,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-GithubCodeUpgrade" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/02/4-GithubCodeUpgrade/" class="article-date">
+  <time class="dt-published" datetime="2022-02-02T02:00:24.372Z" itemprop="datePublished">2022-02-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Github%E9%A1%B9%E7%9B%AE/">Github项目</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/02/4-GithubCodeUpgrade/">将本地代码推送至远程仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>实现思路:</strong></p>
+<pre><code>0、在github上创建一个无*README.md仓库*
+
+1、git init        初始化本地git仓库
+
+2、git add .     (注意add和.之间有空格) 保存所有当前文件夹下所有文件到本地git仓库
+
+3、git commit -m &quot;xxx&quot;         xxx为注释，保存当前添加
+
+4、git remote add origin git@github.com:username/xxx.git     连接远程仓库
+
+5、git pull origin main         如果远程仓库有文件的话，先拉取文件和本地分支合并（新创建仓库可跳过）
+
+6、git push -u origin main     推送文件至远程仓库
+    问题(1):若是报&quot;! [rejected] main -&gt; main (fetch first)&quot;错误信息
+    解决方案: git pull origin main
+             git push -u origin main
+
+    问题(2):若是报&quot;! [rejected] main -&gt; main (non-fast-forward)&quot;错误信息
+    解决方案: git fetch origin
+             git merge origin/main --allow-unrelated-histories
+             git push -u origin main
+             
+</code></pre>
+<p>借鉴博客源网址：<font color=red></p>
+<pre><code>https://blog.csdn.net/qq_39285463/article/details/78861638?%3E
+https://blog.csdn.net/weixin_44070058/article/details/109678077
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/02/4-GithubCodeUpgrade/" data-id="ckz4y8f8y00007cuxhzc751ah" data-title="将本地代码推送至远程仓库" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-Log4jScan" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/01/3-Log4jScan/" class="article-date">
@@ -162,7 +232,7 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/01/3-Log4jScan/" data-id="ckz457psx0000coux1ktnbvi4" data-title="Log4j漏洞批量探测" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/01/3-Log4jScan/" data-id="ckz4cl7010002vouxbbxre89b" data-title="Log4j漏洞批量探测" class="article-share-link">Share</a>
       
       
       
@@ -272,7 +342,7 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/01/2-phoneWeb/" data-id="ckz43xk3d0000hgux0k640ac0" data-title="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/01/2-phoneWeb/" data-id="ckz4cl7030004voux67qm559s" data-title="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透" class="article-share-link">Share</a>
       
       
       
@@ -351,7 +421,7 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/01/1-blogCreat/" data-id="ckz3v4js30000soux0i6saldc" data-title="Github个人博客搭建记录" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/01/1-blogCreat/" data-id="ckz4cl6zw0000vouxewvd46tr" data-title="Github个人博客搭建记录" class="article-share-link">Share</a>
       
       
       
@@ -402,7 +472,7 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/01/hello-world/" data-id="ckz3tam160001koux99atd5uv" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/01/hello-world/" data-id="ckz4cl7040005vouxet7wfrdo" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -424,7 +494,7 @@ if __name__ == &quot;__main__&quot;:
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E6%94%BB%E9%98%B2/">Web攻防</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E7%BD%91%E7%AB%99/">web网站</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Github%E9%A1%B9%E7%9B%AE/">Github项目</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E6%94%BB%E9%98%B2/">Web攻防</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E7%BD%91%E7%AB%99/">web网站</a></li></ul>
     </div>
   </div>
 
@@ -450,6 +520,10 @@ if __name__ == &quot;__main__&quot;:
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/02/02/4-GithubCodeUpgrade/">将本地代码推送至远程仓库</a>
+          </li>
         
           <li>
             <a href="/2022/02/01/3-Log4jScan/">Log4j漏洞批量探测</a>
