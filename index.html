@@ -305,6 +305,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/03/6-tunnelProxyLearn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ju.jfif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DemonJoe_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/03/6-tunnelProxyLearn/" itemprop="url">代理IP有效性验证学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-03T12:39:07+08:00">
+                2022-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E6%94%BB%E9%98%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">Web攻防</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  340 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>废话不多说，直接上代码:参考Github上面一个项目的源代码，</strong></p>
+<pre><code>def CheckAllEffectiveness():
+    global ip_ports
+    # 检查有效性
+    print(&quot;[*]检查代理可用性&quot;)
+    threads = []
+    if foreign:
+        for i in range(len(ip_ports) - 1, -1, -1):
+            ip_port = ip_ports[i]
+            t = threading.Thread(target=Check, args=(&quot;google&quot;, ip_port))
+            threads.append(t)
+            t.start()
+    else:
+        for i in range(len(ip_ports) - 1, -1, -1):
+            ip_port = ip_ports[i]
+            t = threading.Thread(target=Check, args=(&quot;baidu&quot;, ip_port))
+            threads.append(t)
+            t.start()
+
+    for t in threads:
+        t.join()
+    print(&quot;[*]fofa爬取，一共找到&#123;&#125;个有效代理&quot;.format(len(ip_ports)))
+    if len(ip_ports) == 0:
+        Eprint(&quot;请重新圈定爬取代理的范围，此次没有爬取到可用代理。&quot;)
+        sys.exit()
+
+def Check(target, ip_port):
+    if re.search(&#39;[a-zA-Z]]&#39;, ip_port):
+        ip_ports.remove(ip_port)
+        return
+    if CheckEffectiveness(ip_port, target):
+        ip_ports.remove(ip_port)
+        print(&#39;[*]&#123;&#125;不行&#39;.format(ip_port))
+        return
+    print(&#39;[*]&#123;&#125;行&#39;.format(ip_port))
+
+def CheckEffectiveness(proxy, web):
+    proxies = &#123;&#39;http&#39;: &quot;socks5://&#123;&#125;/&quot;.format(proxy), &quot;https&quot;: &quot;socks5://&#123;&#125;/&quot;.format(proxy)&#125;
+    header = &#123;
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36&#39;,
+    &#125;
+
+    res = True
+    try:
+        request = requests.get(url=&#39;https://www.&#123;&#125;.com&#39;.format(web), headers=header, proxies=proxies, timeout=3)
+        if request.status_code == 200:
+            res = False
+    except ValueError:
+        Eprint(&quot;缺少pysocks库，请pip安装&quot;)
+        sys.exit()
+    except:
+        res = True
+    return res
+
+if __name__ == &quot;__main__&quot;:
+    ip_ports = [&#39;192.168.111.1:9999&#39;, &#39;xx.xx.xx.xx:xxxx&#39;]
+    CheckAllEffectiveness()
+</code></pre>
+<p>参考的Github项目：<font color=red><strong><a target="_blank" rel="noopener" href="https://github.com/urdr-gungnir/TunnelProxy">https://github.com/urdr-gungnir/TunnelProxy</a></strong></font></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/03/5-fofaURLCollect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1560,7 +1796,7 @@ if __name__ == &quot;__main__&quot;:
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1624,7 +1860,7 @@ if __name__ == &quot;__main__&quot;:
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.5k</span>
+    <span title="Site words total count">3.9k</span>
   
 </div>
 
