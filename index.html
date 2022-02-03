@@ -305,6 +305,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/03/5-fofaURLCollect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ju.jfif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DemonJoe_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/03/5-fofaURLCollect/" itemprop="url">FOFA URL全中国批量采集(无需付费会员)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-03T10:35:14+08:00">
+                2022-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E6%94%BB%E9%98%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">Web攻防</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  424 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>实现思路:</strong></p>
+<p>1、整合全国所有地级市名拼音，形成一个城市名字典<a target="_blank" rel="noopener" href="https://github.com/xx-demon/fofaURLCollect">full_CityDict.txt</a>(以换行符分隔)</p>
+<p>2、通过Python脚本在FOFA上每采集一个城市的前五页搜索结果URL后，再次切换成其它城市的，这样一直切换不同城市可以采集到成千上万的URL</p>
+<p>3、爬取代码如下：</p>
+<pre><code>#!/usr/bin/python
+# -*- coding:utf-8 -*-
+
+import threading
+import re, requests, time, base64, fire
+
+requests.packages.urllib3.disable_warnings()
+session = requests.Session()
+result = []
+
+def fofasc(s,o,c):
+    try:
+        c = c.encode(&#39;utf-8&#39;)
+        sbase64 = (base64.b64encode(s.encode(&#39;utf-8&#39;))).decode(&#39;utf-8&#39;)
+        cookies = &#123;&#39;cookie&#39;: c&#125;
+        for city in open(&#39;full_CityDict.txt&#39;, &#39;r&#39;):
+            s = s + &#39;&amp;&amp; js_name=&quot;js/jquery.js&#39; + &#39;&amp;&amp; city=&#39; + city.strip()
+            for i in range(1, 6):
+                url = &quot;https://fofa.info/result?&amp;qbase64=&quot; + sbase64 + &quot;&amp;page_size=10&amp;page=&quot;+str(i)
+                response = session.get(url, headers=cookies, verify=False).text
+                result = re.findall(&#39;&#39;&#39;&lt;span class=&quot;aSpan&quot;&gt;&lt;a href=&quot;(.*?)&quot;&#39;&#39;&#39;, response, re.S )
+                print(result)
+                if result != []:
+                    for rs in result:
+                        with open(o, mode=&quot;a+&quot;) as f:
+                            f.write(str(rs) + &quot;\n&quot;)
+                else:
+                    print(&quot;已经获取不到任何数据，爬取完毕！&quot;)
+                    break
+                time.sleep(2)
+    except KeyboardInterrupt:
+        print(&#39;用户退出&#39;)
+
+if __name__ == &#39;__main__&#39;:
+    fire.Fire(fofasc)
+</code></pre>
+<p>3、脚本使用需要输入三个参数：-s&#x2F;-o&#x2F;-c,其中-s后跟FOFA搜索语法，-o后跟采集URL后要输出的文件名，-c后跟登录FOFA后的cookie<br>示例(搜索使用log4j2相关Web服务器)：python3 fofaAssetCollect.py -s&#x3D;app&#x3D;”log4j2” -o&#x3D;”output.txt” -c&#x3D;”这里写自己FOFA登录后的cookie”</p>
+<p>4、详细代码上传至博主博客，需要的点击<a target="_blank" rel="noopener" href="https://github.com/xx-demon/fofaURLCollect">下载完整文件</a>)</p>
+<p>注：<font color=red><strong>本帖属于原创内容，转帖请注明出处</strong></font></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/02/4-GithubCodeUpgrade/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1340,7 +1560,7 @@ if __name__ == &quot;__main__&quot;:
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1404,7 +1624,7 @@ if __name__ == &quot;__main__&quot;:
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.1k</span>
+    <span title="Site words total count">3.5k</span>
   
 </div>
 
