@@ -240,9 +240,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -358,7 +392,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  238
+                  238 words
                 </span>
               
 
@@ -374,7 +408,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  1 min
                 </span>
               
             </div>
@@ -563,7 +597,7 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  350
+                  350 words
                 </span>
               
 
@@ -579,7 +613,7 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  1 min
                 </span>
               
             </div>
@@ -801,7 +835,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  1.3k words
                 </span>
               
 
@@ -817,7 +851,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  4 min
                 </span>
               
             </div>
@@ -839,8 +873,7 @@ if __name__ == &quot;__main__&quot;:
 
       
         
-          
-            <p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+          <p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
 <p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
 <p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
 <p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
@@ -860,54 +893,13 @@ if __name__ == &quot;__main__&quot;:
 ●内网穿透工具
     ●ngrok隧道
 </code></pre>
-<p><strong>开始</strong><br><strong>一、第一阶段：手机的简单设置搭建内网服务器</strong><br><em><strong>1.1 手机安装ksweb</strong></em><br>我的手机型号是小米4</p>
-<p>在这里插入图片描述</p>
-<p><strong>工具ksweb</strong></p>
-<p>目前为止，手机端搭建web服务器最好用的软件是Ksweb</p>
-<p>这是一款俄罗斯人开发的基于安卓系统的web服务器，集成了php、Nginx、MySQL、Apache、FTP等</p>
-<p>可以百度官网下载软件，不过软件收费，建议支持正版，下面百度了一个破解版版，需要自行下载</p>
-<pre><code>链接：https://wws.lanzoui.com/iQPVqregdpa
-</code></pre>
-<p><em><strong>1.2 打开配置ksweb</strong></em><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
-<p>LigHttpd、Apache、Nginx是三大Web服务器，可以根据自己情况选择，这里我选择默认LigHttpd</p>
-<p><img src="/./images/2-phoneWeb/2-ksWebConfig.png" alt="ksweb配置"></p>
-<p>电脑usb连接手机，找到网站文件根目录&#x2F;mnt&#x2F;sdcard&#x2F;htdocs把自己的网页放在该目录下</p>
-<p><img src="/./images/2-phoneWeb/3-webDir.png" alt="web文件路径"><br><img src="/./images/2-phoneWeb/4-webDir.png" alt="web根路径文件"></p>
-<p>然后电脑、手机连接同一个局域网，电脑打开浏览器，输入<a href="http://192.168.0.100:8080访问">http://192.168.0.100:8080访问</a></p>
-<p>若出现自己的网页信息，则成功搭建内网服务器</p>
-<p><img src="/./images/2-phoneWeb/5-webIndex.png" alt="静态页展示"></p>
-<p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
-<p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
-<p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
-<p><strong>二、第二阶段：内网穿透</strong><br><em><strong>2.1电脑端操作</strong></em><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
-<p><img src="/./images/2-phoneWeb/6-ngroc.png" alt="Ngroc隧道配置"></p>
-<p>开通之后点击 隧道管理</p>
-<p><img src="/./images/2-phoneWeb/7-ngrocManager.png" alt="Ngroc隧道管理"></p>
-<p>然后记下自己的隧道id，等会要到手机端操作</p>
-<p><em><strong>2.2手机端操作</strong></em><br>手机端的操作可以参考Ngrok官网手册：<a target="_blank" rel="noopener" href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
-<p>简单就是需要手机端打开命令工具Termux，执行配置文件（我选择的是Python文件），然后输入隧道id开通隧道</p>
-<pre><code>Termux工具以下已提供Termux，需要注意的是Termux下载后初始化需要翻墙连一下外网，这个自行解决。随后会自动初始化配置，配置完后就不用连了，否则进去会一直转圈
-链接：https://f-droid.org/repo/com.termux_117.apk
-</code></pre>
-<p>下载安装之后打开</p>
-<pre><code>●给Android手机安装python
-    pkg install python
-●进入Python客户端所在的目录(如果手机浏览器下载Python脚本，为此目录，然后解压到该目录）
-每个人的浏览器文件下载目录可能不同，根据自己实际情况，也可选择解压到自己找得到的文件目录
-如出现Termux命令行出现打开文件夹目录权限不足的情况，需要找到手机应用权限管理，给予访问手机文件储存的权限
-    cd /storage/emulated/0/Download
-●执行脚本
-    python sunny.py
-</code></pre>
-<p><img src="/./images/2-phoneWeb/8-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
-<p><img src="/./images/2-phoneWeb/9-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
-<p>上述操作设计一点Linux操作，如果操作不明白，查看上面的Ngrox官网帮助手册，里面有视频介绍~</p>
-<p><em><strong>2.3查看成果</strong></em><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
-<p>这里提示免费的隧道可能随时失效，想要持久稳定还得淦！</p>
-<p><img src="/./images/2-phoneWeb/10-endWebIndex.png" alt="最终页面展示"></p>
-<p>借鉴博客源网址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24654501/article/details/108052368">https://blog.csdn.net/qq_24654501/article/details/108052368</a>~~</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/02/01/2-phoneWeb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1044,7 +1036,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.1k words
                 </span>
               
 
@@ -1060,7 +1052,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  4 min
                 </span>
               
             </div>
@@ -1082,46 +1074,18 @@ if __name__ == &quot;__main__&quot;:
 
       
         
-          
-            <pre><code>博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。
+          <pre><code>博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。
 </code></pre>
 <h2 id="工具及平台："><a href="#工具及平台：" class="headerlink" title="工具及平台："></a>工具及平台：</h2><p><strong>工具：hexo、git、Node.js、npm&#x2F;cnpm</strong><br><strong>平台：Windows</strong><br><strong>本文以win10为例进行演示</strong><br><strong>（windows环境需已安装git并配置为环境变量）</strong></p>
 <h2 id="搭建过程："><a href="#搭建过程：" class="headerlink" title="搭建过程："></a>搭建过程：</h2><h3 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h3><h4 id="（1）安装Node-js"><a href="#（1）安装Node-js" class="headerlink" title="（1）安装Node.js"></a>（1）安装Node.js</h4><p><strong>Node.js是一个基于Chrome V8引擎的JavaScript运行环境，能够是js运行在服务端。安装方法非常简单：</strong><br><strong>nodejs.org下载安装即可。推荐下载LTS（Long Time Support）版本</strong></p>
 <p>下载安装Node.js：<br><img src="/./images/1-blogCreat/1-NodejsDownload.png" alt="Node.js下载"></p>
-<h4 id="（2）安装NPM"><a href="#（2）安装NPM" class="headerlink" title="（2）安装NPM"></a>（2）安装NPM</h4><p><strong>NPM（Node Package Manager）是基于Node.js的包管理工具，方便开发人员分享和获取第三方包并使用。</strong><br><strong>由于NPM镜像是国外资源，安装十分缓慢，因此我们选择安装淘宝团队做的镜像cnpm。在win10环境下，以管理员身份运行CMD，输入以下命令：</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="regexp">//</span>registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>这样我们便完成了Node.js和NPM的安装，此时我们可以通过查询版本号的方式来验证Node.js和NPM是否安装成功：</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>如果出现两者的版本信息，说明我们已经成功安装了Node.js和NPM。</p>
-<h4 id="（3）安装hexo"><a href="#（3）安装hexo" class="headerlink" title="（3）安装hexo"></a>（3）安装hexo</h4><p><strong>使用cnpm安装hexo：</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli    <span class="regexp">//</span>安装hexo</span><br></pre></td></tr></table></figure>
-<p>同样可以通过查询版本信息确认hexo是否安装成功：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo -v</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、使用hexo搭建博客"><a href="#2、使用hexo搭建博客" class="headerlink" title="2、使用hexo搭建博客"></a>2、使用hexo搭建博客</h3><h4 id="（1）创建工作路径"><a href="#（1）创建工作路径" class="headerlink" title="（1）创建工作路径"></a>（1）创建工作路径</h4><p><strong>首先在电脑任意位置（如D盘）新建一个文件夹，比如我们命名为blog，在windows系统下，此操作可以直接在D盘操作，或用命令行创建：</strong></p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br></pre></td></tr></table></figure>
-<h4 id="（2）初始化博客"><a href="#（2）初始化博客" class="headerlink" title="（2）初始化博客"></a>（2）初始化博客</h4><p><strong>进入blog文件夹并初始化博客：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>注意：在macOS或Linux环境需以管理员身份进行操作<br>此时我们就通过hexo完成了博客的初始搭建，hexo会默认创建一个landscape主题。此过程有时较慢，耐心等待。<br>这时我们打开电脑的blog文件夹，会发现生成了许多文件，其中theme文件夹内就是我们博客的主题，后续更改主题需要在此操作。</p>
-<h4 id="（3）启动、生成博客"><a href="#（3）启动、生成博客" class="headerlink" title="（3）启动、生成博客"></a>（3）启动、生成博客</h4><p><strong>启动博客：</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
-<p>启动后会出现本地访问的端口<br>hexo启动后，在浏览器中输入 localhost:4000 ,就可以进入我们刚刚生成的博客主页了。<br><img src="/./images/1-blogCreat/2-startBlog.png" alt="启动博客"></p>
-<h4 id="（4）新建文章"><a href="#（4）新建文章" class="headerlink" title="（4）新建文章"></a>（4）新建文章</h4><p><strong>windows环境下推荐直接将写好的文章放在blog&#x2F;source&#x2F;_post路径下：</strong><br><strong>当然也可以像macOS或Linux下使用命令行新建文章，然后进行编辑：</strong></p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="built_in">n</span> <span class="string">&quot;新建的文章&quot;</span></span><br></pre></td></tr></table></figure>
-<p>博客一般使用markdown格式（.md），非常方便的一种格式，网上有很多介绍，大家可以学习一下。</p>
-<h4 id="（5）更新博客"><a href="#（5）更新博客" class="headerlink" title="（5）更新博客"></a>（5）更新博客</h4><p><strong>对博客内容、主题进行修改后，比如刚才新建了一篇文章，需要将修改更新。</strong><br><strong>一般需要在blog目录下按顺序进行清理（clean）、生成（generate）、启动（sever&#x2F;start）操作：</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>至此我们就完成了个人博客的创建，以及如何对博客进行修改等操作。不过我们的博客现在只能通过本地端口（localhost）访问调试，怎么才能让别人看到我们的博客呢？<br>接下来就来介绍如何将博客部署到github上进行访问。</p>
-<h3 id="3、将博客部署到github上"><a href="#3、将博客部署到github上" class="headerlink" title="3、将博客部署到github上"></a>3、将博客部署到github上</h3><h4 id="（1）在github上新建仓库"><a href="#（1）在github上新建仓库" class="headerlink" title="（1）在github上新建仓库"></a>（1）在github上新建仓库</h4><p><strong>仓库名称必须为 xxx.github.io(其中xxx为自己的github用户名)，如codesong99.github.io,并得到仓库地址：</strong><br>github仓库地址：<br><img src="/./images/1-blogCreat/3-theHub.png" alt="GitHub仓库"></p>
-<h4 id="2）在blog目录下安装一个git的部署插件"><a href="#2）在blog目录下安装一个git的部署插件" class="headerlink" title="2）在blog目录下安装一个git的部署插件"></a>2）在blog目录下安装一个git的部署插件</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install <span class="comment">--save hexo-deployer-git</span></span><br></pre></td></tr></table></figure>
-<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="/./images/1-blogCreat/4-theConfig.png" alt="_config.yml配置"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为<strong>main</strong>，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
-<h4 id="（4）将博客部署远端"><a href="#（4）将博客部署远端" class="headerlink" title="（4）将博客部署远端"></a>（4）将博客部署远端</h4><p><strong>回到CMD窗口，在blog目录下输入一下命令，将博客推到远端：</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
-<p>这个”d”就是deploy的意思。此过程需要输入github账号及密码。<br>至此我们就完成了搭建hexo博客并部署到github上的所有工作，在浏览器中输入xxx.github.io即可访问自己的个人博客。</p>
-<p>这样，就可以访问并使用自己的个人博客了。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/02/01/1-blogCreat/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1236,7 +1200,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  75
+                  75 words
                 </span>
               
 
@@ -1252,7 +1216,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  1 min
                 </span>
               
             </div>
@@ -1611,6 +1575,323 @@ if __name__ == &quot;__main__&quot;:
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

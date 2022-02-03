@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Github个人博客搭建记录</title>
+    <url>/2022/02/01/1-blogCreat/</url>
+    <content><![CDATA[<pre><code>博客是传递、分享技术的一种高效途径,本文记录了一种在Github上搭建个人博客的方法，即通过hexo搭建个人博客，部署到github上。
+</code></pre>
+<h2 id="工具及平台："><a href="#工具及平台：" class="headerlink" title="工具及平台："></a>工具及平台：</h2><p><strong>工具：hexo、git、Node.js、npm&#x2F;cnpm</strong><br><strong>平台：Windows</strong><br><strong>本文以win10为例进行演示</strong><br><strong>（windows环境需已安装git并配置为环境变量）</strong></p>
+<h2 id="搭建过程："><a href="#搭建过程：" class="headerlink" title="搭建过程："></a>搭建过程：</h2><h3 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h3><h4 id="（1）安装Node-js"><a href="#（1）安装Node-js" class="headerlink" title="（1）安装Node.js"></a>（1）安装Node.js</h4><p><strong>Node.js是一个基于Chrome V8引擎的JavaScript运行环境，能够是js运行在服务端。安装方法非常简单：</strong><br><strong>nodejs.org下载安装即可。推荐下载LTS（Long Time Support）版本</strong></p>
+<p>下载安装Node.js：<br><img src="/./images/1-blogCreat/1-NodejsDownload.png" alt="Node.js下载"></p>
+<span id="more"></span>
+<h4 id="（2）安装NPM"><a href="#（2）安装NPM" class="headerlink" title="（2）安装NPM"></a>（2）安装NPM</h4><p><strong>NPM（Node Package Manager）是基于Node.js的包管理工具，方便开发人员分享和获取第三方包并使用。</strong><br><strong>由于NPM镜像是国外资源，安装十分缓慢，因此我们选择安装淘宝团队做的镜像cnpm。在win10环境下，以管理员身份运行CMD，输入以下命令：</strong></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="regexp">//</span>registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>这样我们便完成了Node.js和NPM的安装，此时我们可以通过查询版本号的方式来验证Node.js和NPM是否安装成功：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>如果出现两者的版本信息，说明我们已经成功安装了Node.js和NPM。</p>
+<h4 id="（3）安装hexo"><a href="#（3）安装hexo" class="headerlink" title="（3）安装hexo"></a>（3）安装hexo</h4><p><strong>使用cnpm安装hexo：</strong></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli    <span class="regexp">//</span>安装hexo</span><br></pre></td></tr></table></figure>
+<p>同样可以通过查询版本信息确认hexo是否安装成功：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo -v</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、使用hexo搭建博客"><a href="#2、使用hexo搭建博客" class="headerlink" title="2、使用hexo搭建博客"></a>2、使用hexo搭建博客</h3><h4 id="（1）创建工作路径"><a href="#（1）创建工作路径" class="headerlink" title="（1）创建工作路径"></a>（1）创建工作路径</h4><p><strong>首先在电脑任意位置（如D盘）新建一个文件夹，比如我们命名为blog，在windows系统下，此操作可以直接在D盘操作，或用命令行创建：</strong></p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">mkdir blog</span><br></pre></td></tr></table></figure>
+<h4 id="（2）初始化博客"><a href="#（2）初始化博客" class="headerlink" title="（2）初始化博客"></a>（2）初始化博客</h4><p><strong>进入blog文件夹并初始化博客：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>注意：在macOS或Linux环境需以管理员身份进行操作<br>此时我们就通过hexo完成了博客的初始搭建，hexo会默认创建一个landscape主题。此过程有时较慢，耐心等待。<br>这时我们打开电脑的blog文件夹，会发现生成了许多文件，其中theme文件夹内就是我们博客的主题，后续更改主题需要在此操作。</p>
+<h4 id="（3）启动、生成博客"><a href="#（3）启动、生成博客" class="headerlink" title="（3）启动、生成博客"></a>（3）启动、生成博客</h4><p><strong>启动博客：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
+<p>启动后会出现本地访问的端口<br>hexo启动后，在浏览器中输入 localhost:4000 ,就可以进入我们刚刚生成的博客主页了。<br><img src="/./images/1-blogCreat/2-startBlog.png" alt="启动博客"></p>
+<h4 id="（4）新建文章"><a href="#（4）新建文章" class="headerlink" title="（4）新建文章"></a>（4）新建文章</h4><p><strong>windows环境下推荐直接将写好的文章放在blog&#x2F;source&#x2F;_post路径下：</strong><br><strong>当然也可以像macOS或Linux下使用命令行新建文章，然后进行编辑：</strong></p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">hexo <span class="built_in">n</span> <span class="string">&quot;新建的文章&quot;</span></span><br></pre></td></tr></table></figure>
+<p>博客一般使用markdown格式（.md），非常方便的一种格式，网上有很多介绍，大家可以学习一下。</p>
+<h4 id="（5）更新博客"><a href="#（5）更新博客" class="headerlink" title="（5）更新博客"></a>（5）更新博客</h4><p><strong>对博客内容、主题进行修改后，比如刚才新建了一篇文章，需要将修改更新。</strong><br><strong>一般需要在blog目录下按顺序进行清理（clean）、生成（generate）、启动（sever&#x2F;start）操作：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>至此我们就完成了个人博客的创建，以及如何对博客进行修改等操作。不过我们的博客现在只能通过本地端口（localhost）访问调试，怎么才能让别人看到我们的博客呢？<br>接下来就来介绍如何将博客部署到github上进行访问。</p>
+<h3 id="3、将博客部署到github上"><a href="#3、将博客部署到github上" class="headerlink" title="3、将博客部署到github上"></a>3、将博客部署到github上</h3><h4 id="（1）在github上新建仓库"><a href="#（1）在github上新建仓库" class="headerlink" title="（1）在github上新建仓库"></a>（1）在github上新建仓库</h4><p><strong>仓库名称必须为 xxx.github.io(其中xxx为自己的github用户名)，如codesong99.github.io,并得到仓库地址：</strong><br>github仓库地址：<br><img src="/./images/1-blogCreat/3-theHub.png" alt="GitHub仓库"></p>
+<h4 id="2）在blog目录下安装一个git的部署插件"><a href="#2）在blog目录下安装一个git的部署插件" class="headerlink" title="2）在blog目录下安装一个git的部署插件"></a>2）在blog目录下安装一个git的部署插件</h4><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">cnpm install <span class="comment">--save hexo-deployer-git</span></span><br></pre></td></tr></table></figure>
+<h4 id="3）修改blog目录下的配置文件"><a href="#3）修改blog目录下的配置文件" class="headerlink" title="3）修改blog目录下的配置文件"></a>3）修改blog目录下的配置文件</h4><p><strong>打开blog目录下的_config.yml文件，在最后几行的部署（deploy）信息位置添加以下配置：</strong><br>deploy配置：<br><img src="/./images/1-blogCreat/4-theConfig.png" alt="_config.yml配置"><br>部署类型为git，仓库地址为刚才获得的github仓库地址，branch设置为<strong>main</strong>，修改完成后保存并关闭。<br>注意冒号后有一个空格。</p>
+<h4 id="（4）将博客部署远端"><a href="#（4）将博客部署远端" class="headerlink" title="（4）将博客部署远端"></a>（4）将博客部署远端</h4><p><strong>回到CMD窗口，在blog目录下输入一下命令，将博客推到远端：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
+<p>这个”d”就是deploy的意思。此过程需要输入github账号及密码。<br>至此我们就完成了搭建hexo博客并部署到github上的所有工作，在浏览器中输入xxx.github.io即可访问自己的个人博客。</p>
+<p>这样，就可以访问并使用自己的个人博客了。</p>
+]]></content>
+      <categories>
+        <category>web网站</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ksweb搭建Web服务器+Termux、Ngrok实现内网穿透</title>
+    <url>/2022/02/01/2-phoneWeb/</url>
+    <content><![CDATA[<p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+<p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
+<p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
+<p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
+<p><strong>基本思路：</strong><br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
+<p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
+<p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
+<p>这里我们使用最简单的集成工具ksweb</p>
+<p>基本步骤分为两步：</p>
+<pre><code>1、手机的简单设置搭建内网服务器
+2、内网穿透
+</code></pre>
+<p>使用工具：</p>
+<pre><code>●一部小米4旧手机
+    ●ksweb工具
+    ●termux工具
+●内网穿透工具
+    ●ngrok隧道
+</code></pre>
+<span id="more"></span>
+<p><strong>开始</strong><br><strong>一、第一阶段：手机的简单设置搭建内网服务器</strong><br><em><strong>1.1 手机安装ksweb</strong></em><br>我的手机型号是小米4</p>
+<p><img src="/./images/2-phoneWeb/1-phone.png" alt="手机配置"></p>
+<p><strong>工具ksweb</strong></p>
+<p>目前为止，手机端搭建web服务器最好用的软件是Ksweb</p>
+<p>这是一款俄罗斯人开发的基于安卓系统的web服务器，集成了php、Nginx、MySQL、Apache、FTP等</p>
+<p>可以百度官网下载软件，不过软件收费，建议支持正版，下面百度了一个破解版版，需要自行下载</p>
+<pre><code>链接：https://wws.lanzoui.com/iQPVqregdpa
+</code></pre>
+<p><em><strong>1.2 打开配置ksweb</strong></em><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
+<p>LigHttpd、Apache、Nginx是三大Web服务器，可以根据自己情况选择，这里我选择默认LigHttpd</p>
+<p><img src="/./images/2-phoneWeb/2-ksWebConfig.png" alt="ksweb配置"></p>
+<p>电脑usb连接手机，找到网站文件根目录&#x2F;mnt&#x2F;sdcard&#x2F;htdocs把自己的网页放在该目录下</p>
+<p><img src="/./images/2-phoneWeb/3-webDir.png" alt="web文件路径"><br><img src="/./images/2-phoneWeb/4-webDir.png" alt="web根路径文件"></p>
+<p>然后电脑、手机连接同一个局域网，电脑打开浏览器，输入<a href="http://192.168.0.100:8080访问">http://192.168.0.100:8080访问</a></p>
+<p>若出现自己的网页信息，则成功搭建内网服务器</p>
+<p><img src="/./images/2-phoneWeb/5-webIndex.png" alt="静态页展示"></p>
+<p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
+<p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
+<p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
+<p><strong>二、第二阶段：内网穿透</strong><br><em><strong>2.1电脑端操作</strong></em><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<p><img src="/./images/2-phoneWeb/6-ngroc.png" alt="Ngroc隧道配置"></p>
+<p>开通之后点击 隧道管理</p>
+<p><img src="/./images/2-phoneWeb/7-ngrocManager.png" alt="Ngroc隧道管理"></p>
+<p>然后记下自己的隧道id，等会要到手机端操作</p>
+<p><em><strong>2.2手机端操作</strong></em><br>手机端的操作可以参考Ngrok官网手册：<a href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
+<p>简单就是需要手机端打开命令工具Termux，执行配置文件（我选择的是Python文件），然后输入隧道id开通隧道</p>
+<pre><code>Termux工具以下已提供Termux，需要注意的是Termux下载后初始化需要翻墙连一下外网，这个自行解决。随后会自动初始化配置，配置完后就不用连了，否则进去会一直转圈
+链接：https://f-droid.org/repo/com.termux_117.apk
+</code></pre>
+<p>下载安装之后打开</p>
+<pre><code>●给Android手机安装python
+    pkg install python
+●进入Python客户端所在的目录(如果手机浏览器下载Python脚本，为此目录，然后解压到该目录）
+每个人的浏览器文件下载目录可能不同，根据自己实际情况，也可选择解压到自己找得到的文件目录
+如出现Termux命令行出现打开文件夹目录权限不足的情况，需要找到手机应用权限管理，给予访问手机文件储存的权限
+    cd /storage/emulated/0/Download
+●执行脚本
+    python sunny.py
+</code></pre>
+<p><img src="/./images/2-phoneWeb/8-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
+<p><img src="/./images/2-phoneWeb/9-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
+<p>上述操作设计一点Linux操作，如果操作不明白，查看上面的Ngrox官网帮助手册，里面有视频介绍~</p>
+<p><em><strong>2.3查看成果</strong></em><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
+<p>这里提示免费的隧道可能随时失效，想要持久稳定还得淦！</p>
+<p><img src="/./images/2-phoneWeb/10-endWebIndex.png" alt="最终页面展示"></p>
+<p>借鉴博客源网址：<a href="https://blog.csdn.net/qq_24654501/article/details/108052368">https://blog.csdn.net/qq_24654501/article/details/108052368</a>~~</p>
+]]></content>
+      <categories>
+        <category>web网站</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>将本地代码推送至远程仓库</title>
+    <url>/2022/02/02/4-GithubCodeUpgrade/</url>
+    <content><![CDATA[<p><strong>实现思路:</strong></p>
+<pre><code>0、在github上创建一个无*README.md仓库*
+
+1、git init        初始化本地git仓库
+
+2、git add .     (注意add和.之间有空格) 保存所有当前文件夹下所有文件到本地git仓库
+
+3、git commit -m &quot;xxx&quot;         xxx为注释，保存当前添加
+
+4、git remote add origin git@github.com:username/xxx.git     连接远程仓库
+
+5、git pull origin main         如果远程仓库有文件的话，先拉取文件和本地分支合并（新创建仓库可跳过）
+
+6、git push -u origin main     推送文件至远程仓库
+    问题(1):若是报&quot;! [rejected] main -&gt; main (fetch first)&quot;错误信息
+    解决方案: git pull origin main
+             git push -u origin main
+
+    问题(2):若是报&quot;! [rejected] main -&gt; main (non-fast-forward)&quot;错误信息
+    解决方案: git fetch origin
+             git merge origin/main --allow-unrelated-histories
+             git push -u origin main
+             
+</code></pre>
+<p>借鉴博客源网址：<font color=red></p>
+<pre><code>https://blog.csdn.net/qq_39285463/article/details/78861638?%3E
+https://blog.csdn.net/weixin_44070058/article/details/109678077
+</code></pre>
+</font>]]></content>
+      <categories>
+        <category>Github项目</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Log4j漏洞批量探测</title>
+    <url>/2022/02/01/3-Log4jScan/</url>
+    <content><![CDATA[<p><strong>实现思路:</strong></p>
+<pre><code>1、python读取urls.txt所有应用资产
+
+2、调用rad对urls页面进行爬虫
+
+3、爬取到的数据包转发到burp
+
+4、使用burp的log4j插件对数据包所有字段进行POC探测
+</code></pre>
+<p><strong>需要工具:</strong></p>
+<pre><code>batch_rad.py
+
+rad【https://github.com/chaitin/rad】
+
+burp插件(log4jShell Scanner)【burp插件仓库自带】
+</code></pre>
+<p><strong>batch_rad.py代码如下：</strong></p>
+<pre><code>import os
+import time
+import sys
+import datetime
+
+def globalPath():#文件路径
+    global radPath #rad
+    global urlPath #url资产
+    radPath = r&quot;C:\Users\jues\Desktop\rad\rad.exe&quot;
+    urlPath = r&quot;C:\Users\jues\Desktop\rad\urls.txt&quot;
+
+def getUrl(path):#获取urls
+    file = open(path)
+    urls = []
+    for line in file:
+        urls.append(line.strip(&#39;\n&#39;))  # 移除换行符将url添加到数组
+    file.close()
+    return urls
+
+def addFiles(pathName):#创建扫描报告文件夹
+    try:
+        filePath = sys.path[0] + &quot;\\&quot; + datetime.datetime.now().strftime(&#39;%Y.%m.%d-&#39;) + pathName  #D:\xxxx\xxxx\batch_scan\2020.11.11-scan_domains\
+        os.mkdir(filePath)
+    except:
+        pass
+    return filePath
+
+
+def scan():#rad_burp联动扫描
+    urls = getUrl(urlPath)
+    filePath = addFiles(&quot;scan_rad_burp\\&quot;)
+    sum = 0
+    for url in urls:
+        sum += 1
+        name = str(sum) + &#39;,&#39; + url.replace(&#39;https://&#39;, &#39;&#39;).replace(&#39;http://&#39;,&#39;&#39;).replace(&#39;/&#39;,&#39;&#39;).replace(&#39;\n&#39;,&#39;&#39;).replace(&#39;:&#39;,&#39;-&#39;).rstrip() + &#39;.txt&#39; #创建的爬虫文件名
+        radcmd = r&#39;&#123;0&#125; -t &#123;1&#125; --http-proxy 127.0.0.1:8080 -text-output &#123;2&#125;&#39;.format(radPath, url.replace(&#39;\n&#39;, &#39;&#39;), filePath + name)  # cmd
+        os.system(radcmd.replace(&#39;\n&#39;, &#39;&#39;))
+        time.sleep(1)
+
+if __name__ == &quot;__main__&quot;:
+    globalPath()
+    scan()
+</code></pre>
+<p>借鉴博客源网址：<a href="https://www.cnblogs.com/jujuxia/p/15772466.html">https://www.cnblogs.com/jujuxia/p/15772466.html</a>~~</p>
+]]></content>
+      <categories>
+        <category>Web攻防</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/02/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
