@@ -86,12 +86,12 @@
 
 
 
-<meta name="description" content="写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是">
+<meta name="description" content="#写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透">
 <meta property="og:url" content="http://example.com/2022/02/01/2-phoneWeb/index.html">
 <meta property="og:site_name" content="DemonJoe_Blog">
-<meta property="og:description" content="写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是">
+<meta property="og:description" content="#写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/1-phone.png">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/2-ksWebConfig.png">
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/9-pythonNgroc.png">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/10-endWebIndex.png">
 <meta property="article:published_time" content="2022-02-01T11:01:28.769Z">
-<meta property="article:modified_time" content="2022-02-03T02:01:55.005Z">
+<meta property="article:modified_time" content="2022-02-04T16:52:32.465Z">
 <meta property="article:author" content="Demon Joe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/2-phoneWeb/1-phone.png">
@@ -444,11 +444,11 @@
       
 
       
-        <p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+        <p>#写在前面:<br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
 <p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
 <p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
 <p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
-<p><strong>基本思路：</strong><br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<p>#基本思路：<br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
 <p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
 <p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
 <p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
@@ -465,7 +465,9 @@
     ●ngrok隧道
 </code></pre>
 <span id="more"></span>
-<p><strong>开始</strong><br><strong>一、第一阶段：手机的简单设置搭建内网服务器</strong><br><em><strong>1.1 手机安装ksweb</strong></em><br>我的手机型号是小米4</p>
+<p>#开始<br>##<strong>第一阶段：手机的简单设置搭建内网服务器</strong></p>
+<p><strong>1.1 手机安装ksweb</strong></p>
+<p>我的手机型号是小米4</p>
 <p><img src="/./images/2-phoneWeb/1-phone.png" alt="手机配置"></p>
 <p><strong>工具ksweb</strong></p>
 <p>目前为止，手机端搭建web服务器最好用的软件是Ksweb</p>
@@ -473,7 +475,7 @@
 <p>可以百度官网下载软件，不过软件收费，建议支持正版，下面百度了一个破解版版，需要自行下载</p>
 <pre><code>链接：https://wws.lanzoui.com/iQPVqregdpa
 </code></pre>
-<p><em><strong>1.2 打开配置ksweb</strong></em><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
+<p><strong>1.2 打开配置ksweb</strong><br>安装之后打开，可以看到手机的内外网IP、端口号、网站文件根目录、各种服务</p>
 <p>LigHttpd、Apache、Nginx是三大Web服务器，可以根据自己情况选择，这里我选择默认LigHttpd</p>
 <p><img src="/./images/2-phoneWeb/2-ksWebConfig.png" alt="ksweb配置"></p>
 <p>电脑usb连接手机，找到网站文件根目录&#x2F;mnt&#x2F;sdcard&#x2F;htdocs把自己的网页放在该目录下</p>
@@ -484,12 +486,12 @@
 <p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
 <p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
 <p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
-<p><strong>二、第二阶段：内网穿透</strong><br><em><strong>2.1电脑端操作</strong></em><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<p>##<strong>第二阶段：内网穿透</strong><br><strong>2.1电脑端操作</strong><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
 <p><img src="/./images/2-phoneWeb/6-ngroc.png" alt="Ngroc隧道配置"></p>
 <p>开通之后点击 隧道管理</p>
 <p><img src="/./images/2-phoneWeb/7-ngrocManager.png" alt="Ngroc隧道管理"></p>
 <p>然后记下自己的隧道id，等会要到手机端操作</p>
-<p><em><strong>2.2手机端操作</strong></em><br>手机端的操作可以参考Ngrok官网手册：<a target="_blank" rel="noopener" href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
+<p><strong>2.2手机端操作</strong><br>手机端的操作可以参考Ngrok官网手册：<a target="_blank" rel="noopener" href="http://ngrok.cc/_book/start/ngrok_android.html">http://ngrok.cc/_book/start/ngrok_android.html</a></p>
 <p>简单就是需要手机端打开命令工具Termux，执行配置文件（我选择的是Python文件），然后输入隧道id开通隧道</p>
 <pre><code>Termux工具以下已提供Termux，需要注意的是Termux下载后初始化需要翻墙连一下外网，这个自行解决。随后会自动初始化配置，配置完后就不用连了，否则进去会一直转圈
 链接：https://f-droid.org/repo/com.termux_117.apk
@@ -507,7 +509,7 @@
 <p><img src="/./images/2-phoneWeb/8-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
 <p><img src="/./images/2-phoneWeb/9-pythonNgroc.png" alt="python及ngroc的安装和使用"></p>
 <p>上述操作设计一点Linux操作，如果操作不明白，查看上面的Ngrox官网帮助手册，里面有视频介绍~</p>
-<p><em><strong>2.3查看成果</strong></em><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
+<p><strong>2.3查看成果</strong><br>注意手机端的ksweb、Termux不要关闭，保持在后台运行</p>
 <p>这里提示免费的隧道可能随时失效，想要持久稳定还得淦！</p>
 <p><img src="/./images/2-phoneWeb/10-endWebIndex.png" alt="最终页面展示"></p>
 <p>借鉴博客源网址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24654501/article/details/108052368">https://blog.csdn.net/qq_24654501/article/details/108052368</a>~~</p>

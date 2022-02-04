@@ -432,7 +432,7 @@
         
           
             <p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
-<p><strong>目录</strong></p>
+<p>##<strong>目录</strong></p>
 <p>一、代码审计基础</p>
 <p>二、代码审计思路</p>
 <p>三、PHP核心配置<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
@@ -441,7 +441,7 @@
 <p>六、PHP的弱类型<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>七、学习”漏洞”函数<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>八、代码审计总结</p>
-<p><strong>一、代码审计基础</strong></p>
+<p>##<strong>一、代码审计基础</strong></p>
 <p>代码审计两种基本方式：</p>
 <pre><code>●通读全文源码：通读全文发作为一种最麻烦的方法也是最全面的审计方法。特别是针对大型程序，源码成千上万行。当然了解整个Web应用的业务逻辑，才能
 挖掘到更多更有价值的漏洞。
@@ -455,7 +455,7 @@
 <pre><code>●单入口cms：不管访问哪个模块都使用同一个入口文件，常见的MVC框架采用这种模式。
 ●多入口cms：每个模块都有一个入口文件(可以前端设置一个入口文件 index.php，后端创建一个入口文件admin.php，前后端的入口文件是独立的)。
 </code></pre>
-<p><strong>二、代码审计思路</strong></p>
+<p>##<strong>二、代码审计思路</strong></p>
 <p>接下来我们从三个层次开始我们的源码审计思路：</p>
 <pre><code>1.确定要审计的源码是什么语言
 
@@ -463,12 +463,12 @@
 
 3.确定该语言的各种漏洞诞生的函数
 </code></pre>
-<p><strong>三、PHP核心配置：通过转载博客链接自行查看</strong></p>
-<p><strong>四、代码审计环境：通过转载博客链接自行查看</strong></p>
-<p><strong>五、手动调试代码：通过转载博客链接自行查看</strong></p>
-<p><strong>六、PHP的弱类型：通过转载博客链接自行查看</strong></p>
-<p><strong>七、学习”漏洞”函数：通过转载博客链接自行查看</strong></p>
-<p><strong>八、审计路线总结:审计路线：</strong></p>
+<p>##<strong>三、PHP核心配置：<font color=red>通过转载博客链接自行查看</font></strong></p>
+<p>##<strong>四、代码审计环境：<font color=red>通过转载博客链接自行查看</font></strong></p>
+<p>##<strong>五、手动调试代码：<font color=red>通过转载博客链接自行查看</font></strong></p>
+<p>##<strong>六、PHP的弱类型：<font color=red>通过转载博客链接自行查看</font></strong></p>
+<p>##<strong>七、学习”漏洞”函数：<font color=red>通过转载博客链接自行查看</font></strong></p>
+<p>##<strong>八、审计路线总结:审计路线：</strong></p>
 <p><font color=red><em><strong><strong>Demo-&gt;综合漏洞靶场-&gt;网上审计过的CMS-&gt;多入口CMS-&gt;单入口CMS-&gt;框架-&gt;函数缺陷</strong></strong></em></font></p>
 <p><strong>推荐一些demo：</strong></p>
 <pre><code>https://github.com/bowu678/php_bugs
@@ -657,7 +657,7 @@ https://github.com/SukaraLin/php_code_audit_project
       
         
           <p><strong>搞吐了，调了一天代码，最后发现是免费代理不稳定导致代理效果很差！请注意，要是想自己本地做Sockets代理转发，建议在网上买匿名代理IP池。</strong></p>
-<p><strong>开启Sockets代理的源码详情如下:</strong></p>
+<p>##<strong>开启Sockets代理的源码详情如下:</strong></p>
 <p><font color=red><strong>注：本文中”proxy.txt”为存放代理IP池的文档名</strong></font></p>
 <pre><code>import socket
 import sys
@@ -872,7 +872,7 @@ class MyThread(Thread):
       
         
           
-            <p><strong>废话不多说，直接上代码:参考Github上面一个项目的源代码</strong></p>
+            <p>#<strong>废话不多说，直接上代码:参考Github上面一个项目的源代码</strong></p>
 <pre><code>def CheckAllEffectiveness():
     global ip_ports
     # 检查有效性
@@ -1069,7 +1069,7 @@ if __name__ == &quot;__main__&quot;:
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  424 words
+                  429 words
                 </span>
               
 
@@ -1108,7 +1108,7 @@ if __name__ == &quot;__main__&quot;:
       
         
           
-            <p><strong>实现思路:</strong></p>
+            <p>#<strong>实现思路:</strong></p>
 <p>1、整合全国所有地级市名拼音，形成一个城市名字典<a target="_blank" rel="noopener" href="https://github.com/xx-demon/fofaURLCollect">full_CityDict.txt</a>(以换行符分隔)</p>
 <p>2、通过Python脚本在FOFA上每采集一个城市的前五页搜索结果URL后，再次切换成其它城市的，这样一直切换不同城市可以采集到成千上万的URL</p>
 <p>3、爬取代码如下：</p>
@@ -1148,7 +1148,7 @@ def fofasc(s,o,c):
 if __name__ == &#39;__main__&#39;:
     fire.Fire(fofasc)
 </code></pre>
-<p>3、脚本使用需要输入三个参数：-s&#x2F;-o&#x2F;-c,其中-s后跟FOFA搜索语法，-o后跟采集URL后要输出的文件名，-c后跟登录FOFA后的cookie<br>示例(搜索使用log4j2相关Web服务器)：python3 fofaAssetCollect.py -s&#x3D;app&#x3D;”log4j2” -o&#x3D;”output.txt” -c&#x3D;”这里写自己FOFA登录后的cookie”</p>
+<p><strong>脚本使用说明：</strong>脚本使用需要输入三个参数：-s&#x2F;-o&#x2F;-c,其中-s后跟FOFA搜索语法，-o后跟采集URL后要输出的文件名，-c后跟登录FOFA后的cookie<br>示例(搜索使用log4j2相关Web服务器)：python3 fofaAssetCollect.py -s&#x3D;app&#x3D;”log4j2” -o&#x3D;”output.txt” -c&#x3D;”这里写自己FOFA登录后的cookie”</p>
 <p>4、详细代码上传至博主博客，需要的点击<a target="_blank" rel="noopener" href="https://github.com/xx-demon/fofaURLCollect">下载完整文件</a></p>
 <p>注：<font color=red><strong>本帖属于原创内容，转帖请注明出处</strong></font></p>
 
@@ -1328,7 +1328,7 @@ if __name__ == &#39;__main__&#39;:
       
         
           
-            <p><strong>实现思路:</strong></p>
+            <p>#<strong>实现思路:</strong></p>
 <pre><code>0、在github上创建一个无*README.md仓库*
 
 1、git init        初始化本地git仓库
@@ -1533,7 +1533,7 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
       
         
           
-            <p><strong>实现思路:</strong></p>
+            <p>#<strong>实现思路:</strong></p>
 <pre><code>1、python读取urls.txt所有应用资产
 
 2、调用rad对urls页面进行爬虫
@@ -1542,14 +1542,14 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
 
 4、使用burp的log4j插件对数据包所有字段进行POC探测
 </code></pre>
-<p><strong>需要工具:</strong></p>
+<p>#<strong>需要工具:</strong></p>
 <pre><code>batch_rad.py
 
 rad【https://github.com/chaitin/rad】
 
 burp插件(log4jShell Scanner)【burp插件仓库自带】
 </code></pre>
-<p><strong>batch_rad.py代码如下：</strong></p>
+<p>#<strong>batch_rad.py代码如下：</strong></p>
 <pre><code>import os
 import time
 import sys
@@ -1770,11 +1770,11 @@ if __name__ == &quot;__main__&quot;:
 
       
         
-          <p><strong>写在前面:</strong><br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+          <p>#写在前面:<br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
 <p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
 <p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
 <p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
-<p><strong>基本思路：</strong><br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<p>#基本思路：<br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
 <p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
 <p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
 <p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
