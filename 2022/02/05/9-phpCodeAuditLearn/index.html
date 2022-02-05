@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 #php代码审计之无框架SQL注入挖掘 1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II">
+<meta name="description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II、搜">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计初探(初窥门径-2)">
 <meta property="og:url" content="http://example.com/2022/02/05/9-phpCodeAuditLearn/index.html">
 <meta property="og:site_name" content="DemonJoe_Blog">
-<meta property="og:description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 #php代码审计之无框架SQL注入挖掘 1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II">
+<meta property="og:description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II、搜">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-05T15:12:10.057Z">
-<meta property="article:modified_time" content="2022-02-05T15:27:47.433Z">
+<meta property="article:modified_time" content="2022-02-05T15:32:25.499Z">
 <meta property="article:author" content="Demon Joe">
 <meta name="twitter:card" content="summary">
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  516 words
+                  515 words
                 </span>
               
 
@@ -434,8 +434,7 @@
 
       
         <p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
-<p>#<strong>php代码审计之无框架SQL注入挖掘</strong></p>
-<p>1、漏洞产生的根本原因</p>
+<h1 id="php代码审计之无框架SQL注入挖掘"><a href="#php代码审计之无框架SQL注入挖掘" class="headerlink" title="php代码审计之无框架SQL注入挖掘"></a><strong>php代码审计之无框架SQL注入挖掘</strong></h1><p>1、漏洞产生的根本原因</p>
 <pre><code>a、可控变量：决定是否可以传递Payload
 b、特定漏洞函数：决定产生什么漏洞
 </code></pre>
@@ -462,9 +461,9 @@ b、断点调试：访问页面对应代码进行断点调试（分析过程和�
 ◎CMS有转义+过滤-&gt;断点调试(查全过程，并给出绕过方案)-&gt;确定SQL语句执行
 </code></pre>
 <p>4、本次漏洞审计学习源码为”GET_无框架_SQL注入”web源码和”POST_无框架_二阶注入”web源码，目前已上传至博主Github仓库，需要的点下面Github链接.</p>
-<p>博主代码审计学习所用SQL注入漏洞web源码：<font color=red><strong><a target="_blank" rel="noopener" href="https://github.com/xx-demon/sourceCodeOfCodeAudit.git">https://github.com/xx-demon/sourceCodeOfCodeAudit.git</a></strong></font></p>
+<p>博主代码审计学习所用SQL注入漏洞web源码：<br><font color=red><strong><a target="_blank" rel="noopener" href="https://github.com/xx-demon/sourceCodeOfCodeAudit.git">https://github.com/xx-demon/sourceCodeOfCodeAudit.git</a></strong></font></p>
 <p>注：<strong>源码为个人收集，并非视频展示源码</strong></p>
-<p>学习视频参考链接：<font color=red><strong><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>学习视频参考链接：<br><font color=red><strong><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
 
       
     </div>
@@ -559,8 +558,17 @@ b、断点调试：访问页面对应代码进行断点调试（分析过程和�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -615,6 +623,22 @@ b、断点调试：访问页面对应代码进行断点调试（分析过程和�
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E4%B9%8B%E6%97%A0%E6%A1%86%E6%9E%B6SQL%E6%B3%A8%E5%85%A5%E6%8C%96%E6%8E%98"><span class="nav-number">1.</span> <span class="nav-text">php代码审计之无框架SQL注入挖掘</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

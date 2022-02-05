@@ -49,11 +49,11 @@
   <entry>
     <title>ksweb搭建Web服务器+Termux、Ngrok实现内网穿透</title>
     <url>/2022/02/01/2-phoneWeb/</url>
-    <content><![CDATA[<p>#写在前面:<br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+    <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面:"></a>写在前面:</h1><p>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
 <p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
 <p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
 <p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
-<p>#基本思路：<br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<h1 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h1><p>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
 <p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
 <p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
 <p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
@@ -70,8 +70,7 @@
     ●ngrok隧道
 </code></pre>
 <span id="more"></span>
-<p>#开始<br>##<strong>第一阶段：手机的简单设置搭建内网服务器</strong></p>
-<p><strong>1.1 手机安装ksweb</strong></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="第一阶段：手机的简单设置搭建内网服务器"><a href="#第一阶段：手机的简单设置搭建内网服务器" class="headerlink" title="第一阶段：手机的简单设置搭建内网服务器"></a><strong>第一阶段：手机的简单设置搭建内网服务器</strong></h2><p><strong>1.1 手机安装ksweb</strong></p>
 <p>我的手机型号是小米4</p>
 <p><img src="/./images/2-phoneWeb/1-phone.png" alt="手机配置"></p>
 <p><strong>工具ksweb</strong></p>
@@ -91,7 +90,7 @@
 <p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
 <p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
 <p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
-<p>##<strong>第二阶段：内网穿透</strong><br><strong>2.1电脑端操作</strong><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<h2 id="第二阶段：内网穿透"><a href="#第二阶段：内网穿透" class="headerlink" title="第二阶段：内网穿透"></a><strong>第二阶段：内网穿透</strong></h2><p><strong>2.1电脑端操作</strong><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
 <p><img src="/./images/2-phoneWeb/6-ngroc.png" alt="Ngroc隧道配置"></p>
 <p>开通之后点击 隧道管理</p>
 <p><img src="/./images/2-phoneWeb/7-ngrocManager.png" alt="Ngroc隧道管理"></p>
@@ -126,8 +125,7 @@
   <entry>
     <title>将本地代码推送至远程仓库</title>
     <url>/2022/02/02/4-GithubCodeUpgrade/</url>
-    <content><![CDATA[<p>#<strong>实现思路:</strong></p>
-<pre><code>0、在github上创建一个无*README.md仓库*
+    <content><![CDATA[<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路:"></a><strong>实现思路:</strong></h1><pre><code>0、在github上创建一个无*README.md仓库*
 
 1、git init        初始化本地git仓库
 
@@ -162,8 +160,7 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
   <entry>
     <title>Log4j漏洞批量探测</title>
     <url>/2022/02/01/3-Log4jScan/</url>
-    <content><![CDATA[<p>#<strong>实现思路:</strong></p>
-<pre><code>1、python读取urls.txt所有应用资产
+    <content><![CDATA[<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路:"></a><strong>实现思路:</strong></h1><pre><code>1、python读取urls.txt所有应用资产
 
 2、调用rad对urls页面进行爬虫
 
@@ -171,15 +168,13 @@ https://blog.csdn.net/weixin_44070058/article/details/109678077
 
 4、使用burp的log4j插件对数据包所有字段进行POC探测
 </code></pre>
-<p>#<strong>需要工具:</strong></p>
-<pre><code>batch_rad.py
+<h1 id="需要工具"><a href="#需要工具" class="headerlink" title="需要工具:"></a><strong>需要工具:</strong></h1><pre><code>batch_rad.py
 
 rad【https://github.com/chaitin/rad】
 
 burp插件(log4jShell Scanner)【burp插件仓库自带】
 </code></pre>
-<p>#<strong>batch_rad.py代码如下：</strong></p>
-<pre><code>import os
+<h1 id="batch-rad-py代码如下："><a href="#batch-rad-py代码如下：" class="headerlink" title="batch_rad.py代码如下："></a><strong>batch_rad.py代码如下：</strong></h1><pre><code>import os
 import time
 import sys
 import datetime
@@ -249,8 +244,7 @@ if __name__ == &quot;__main__&quot;:
   <entry>
     <title>FOFA URL全中国批量采集(无需付费会员)</title>
     <url>/2022/02/03/5-fofaURLCollect/</url>
-    <content><![CDATA[<p>#<strong>实现思路:</strong></p>
-<p>1、整合全国所有地级市名拼音，形成一个城市名字典<a href="https://github.com/xx-demon/fofaURLCollect">full_CityDict.txt</a>(以换行符分隔)</p>
+    <content><![CDATA[<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路:"></a><strong>实现思路:</strong></h1><p>1、整合全国所有地级市名拼音，形成一个城市名字典<a href="https://github.com/xx-demon/fofaURLCollect">full_CityDict.txt</a>(以换行符分隔)</p>
 <p>2、通过Python脚本在FOFA上每采集一个城市的前五页搜索结果URL后，再次切换成其它城市的，这样一直切换不同城市可以采集到成千上万的URL</p>
 <p>3、爬取代码如下：</p>
 <pre><code>#!/usr/bin/python
@@ -300,8 +294,7 @@ if __name__ == &#39;__main__&#39;:
   <entry>
     <title>Sockets代理IP有效性验证学习</title>
     <url>/2022/02/03/6-tunnelProxyLearn/</url>
-    <content><![CDATA[<p>#<strong>废话不多说，直接上代码:参考Github上面一个项目的源代码</strong></p>
-<pre><code>def CheckAllEffectiveness():
+    <content><![CDATA[<h1 id="废话不多说，直接上代码-参考Github上面一个项目的源代码"><a href="#废话不多说，直接上代码-参考Github上面一个项目的源代码" class="headerlink" title="废话不多说，直接上代码:参考Github上面一个项目的源代码"></a><strong>废话不多说，直接上代码:参考Github上面一个项目的源代码</strong></h1><pre><code>def CheckAllEffectiveness():
     global ip_ports
     # 检查有效性
     print(&quot;[*]检查代理可用性&quot;)
@@ -368,8 +361,7 @@ if __name__ == &quot;__main__&quot;:
     <title>通过代理IP池进行Sockets代理</title>
     <url>/2022/02/04/7-tunnelProxyLearn/</url>
     <content><![CDATA[<p><strong>搞吐了，调了一天代码，最后发现是免费代理不稳定导致代理效果很差！请注意，要是想自己本地做Sockets代理转发，建议在网上买匿名代理IP池。</strong></p>
-<p>##<strong>开启Sockets代理的源码详情如下:</strong></p>
-<p><font color=red><strong>注：本文中”proxy.txt”为存放代理IP池的文档名</strong></font></p>
+<h2 id="开启Sockets代理的源码详情如下"><a href="#开启Sockets代理的源码详情如下" class="headerlink" title="开启Sockets代理的源码详情如下:"></a><strong>开启Sockets代理的源码详情如下:</strong></h2><p><font color=red><strong>注：本文中”proxy.txt”为存放代理IP池的文档名</strong></font></p>
 <pre><code>import socket
 import sys
 import threading
@@ -519,8 +511,7 @@ if __name__ == &quot;__main__&quot;:
     <title>代码审计初探(初窥门径-1)</title>
     <url>/2022/02/04/8-phpCodeAuditLearn/</url>
     <content><![CDATA[<p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
-<p>##<strong>目录</strong></p>
-<p>一、代码审计基础</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h2><p>一、代码审计基础</p>
 <p>二、代码审计思路</p>
 <p>三、PHP核心配置<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>四、代码审计环境<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
@@ -528,8 +519,7 @@ if __name__ == &quot;__main__&quot;:
 <p>六、PHP的弱类型<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>七、学习”漏洞”函数<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>八、代码审计总结</p>
-<p>##<strong>一、代码审计基础</strong></p>
-<p>代码审计两种基本方式：</p>
+<h2 id="一、代码审计基础"><a href="#一、代码审计基础" class="headerlink" title="一、代码审计基础"></a><strong>一、代码审计基础</strong></h2><p>代码审计两种基本方式：</p>
 <pre><code>●通读全文源码：通读全文发作为一种最麻烦的方法也是最全面的审计方法。特别是针对大型程序，源码成千上万行。当然了解整个Web应用的业务逻辑，才能
 挖掘到更多更有价值的漏洞。
 ●功能点审计：根据漏洞对应发生函数进行功能行审计，常会用到逆向溯源数据流方法进行审计。
@@ -542,21 +532,14 @@ if __name__ == &quot;__main__&quot;:
 <pre><code>●单入口cms：不管访问哪个模块都使用同一个入口文件，常见的MVC框架采用这种模式。
 ●多入口cms：每个模块都有一个入口文件(可以前端设置一个入口文件 index.php，后端创建一个入口文件admin.php，前后端的入口文件是独立的)。
 </code></pre>
-<p>##<strong>二、代码审计思路</strong></p>
-<p>接下来我们从三个层次开始我们的源码审计思路：</p>
+<h2 id="二、代码审计思路"><a href="#二、代码审计思路" class="headerlink" title="二、代码审计思路"></a><strong>二、代码审计思路</strong></h2><p>接下来我们从三个层次开始我们的源码审计思路：</p>
 <pre><code>1.确定要审计的源码是什么语言
 
 2.确定该源码是单入口还是多入口
 
 3.确定该语言的各种漏洞诞生的函数
 </code></pre>
-<p>##<strong>三、PHP核心配置：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>四、代码审计环境：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>五、手动调试代码：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>六、PHP的弱类型：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>七、学习”漏洞”函数：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>八、审计路线总结:审计路线：</strong></p>
-<p><font color=red><em><strong><strong>Demo-&gt;综合漏洞靶场-&gt;网上审计过的CMS-&gt;多入口CMS-&gt;单入口CMS-&gt;框架-&gt;函数缺陷</strong></strong></em></font></p>
+<h2 id="三、PHP核心配置：通过转载博客链接自行查看"><a href="#三、PHP核心配置：通过转载博客链接自行查看" class="headerlink" title="三、PHP核心配置：通过转载博客链接自行查看"></a><strong>三、PHP核心配置：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="四、代码审计环境：通过转载博客链接自行查看"><a href="#四、代码审计环境：通过转载博客链接自行查看" class="headerlink" title="四、代码审计环境：通过转载博客链接自行查看"></a><strong>四、代码审计环境：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="五、手动调试代码：通过转载博客链接自行查看"><a href="#五、手动调试代码：通过转载博客链接自行查看" class="headerlink" title="五、手动调试代码：通过转载博客链接自行查看"></a><strong>五、手动调试代码：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="六、PHP的弱类型：通过转载博客链接自行查看"><a href="#六、PHP的弱类型：通过转载博客链接自行查看" class="headerlink" title="六、PHP的弱类型：通过转载博客链接自行查看"></a><strong>六、PHP的弱类型：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="七、学习”漏洞”函数：通过转载博客链接自行查看"><a href="#七、学习”漏洞”函数：通过转载博客链接自行查看" class="headerlink" title="七、学习”漏洞”函数：通过转载博客链接自行查看"></a><strong>七、学习”漏洞”函数：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="八、审计路线总结-审计路线："><a href="#八、审计路线总结-审计路线：" class="headerlink" title="八、审计路线总结:审计路线："></a><strong>八、审计路线总结:审计路线：</strong></h2><p><font color=red><em><strong><strong>Demo-&gt;综合漏洞靶场-&gt;网上审计过的CMS-&gt;多入口CMS-&gt;单入口CMS-&gt;框架-&gt;函数缺陷</strong></strong></em></font></p>
 <p><strong>推荐一些demo：</strong></p>
 <pre><code>https://github.com/bowu678/php_bugs
 
@@ -576,8 +559,7 @@ https://github.com/SukaraLin/php_code_audit_project
     <title>代码审计初探(初窥门径-2)</title>
     <url>/2022/02/05/9-phpCodeAuditLearn/</url>
     <content><![CDATA[<p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
-<p>#<strong>php代码审计之无框架SQL注入挖掘</strong></p>
-<p>1、漏洞产生的根本原因</p>
+<h1 id="php代码审计之无框架SQL注入挖掘"><a href="#php代码审计之无框架SQL注入挖掘" class="headerlink" title="php代码审计之无框架SQL注入挖掘"></a><strong>php代码审计之无框架SQL注入挖掘</strong></h1><p>1、漏洞产生的根本原因</p>
 <pre><code>a、可控变量：决定是否可以传递Payload
 b、特定漏洞函数：决定产生什么漏洞
 </code></pre>
@@ -604,9 +586,9 @@ b、断点调试：访问页面对应代码进行断点调试（分析过程和�
 ◎CMS有转义+过滤-&gt;断点调试(查全过程，并给出绕过方案)-&gt;确定SQL语句执行
 </code></pre>
 <p>4、本次漏洞审计学习源码为”GET_无框架_SQL注入”web源码和”POST_无框架_二阶注入”web源码，目前已上传至博主Github仓库，需要的点下面Github链接.</p>
-<p>博主代码审计学习所用SQL注入漏洞web源码：<font color=red><strong><a href="https://github.com/xx-demon/sourceCodeOfCodeAudit.git">https://github.com/xx-demon/sourceCodeOfCodeAudit.git</a></strong></font></p>
+<p>博主代码审计学习所用SQL注入漏洞web源码：<br><font color=red><strong><a href="https://github.com/xx-demon/sourceCodeOfCodeAudit.git">https://github.com/xx-demon/sourceCodeOfCodeAudit.git</a></strong></font></p>
 <p>注：<strong>源码为个人收集，并非视频展示源码</strong></p>
-<p>学习视频参考链接：<font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
 ]]></content>
       <categories>
         <category>代码审计</category>

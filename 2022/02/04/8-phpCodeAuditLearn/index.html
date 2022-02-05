@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 ##目录 一、代码审计基础 二、代码审计思路 三、PHP核心配置（自行通过参考博客链接查看） 四、代码审计环境（自行通过参考博客链接查看） 五、手动调试代码（自行通过参考博客链接查看） 六、PHP的弱类型（自行通过参考博客链接查看） 七、学习”漏洞”函数（自行通过参考博客链接查看） 八、代码">
+<meta name="description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 目录一、代码审计基础 二、代码审计思路 三、PHP核心配置（自行通过参考博客链接查看） 四、代码审计环境（自行通过参考博客链接查看） 五、手动调试代码（自行通过参考博客链接查看） 六、PHP的弱类型（自行通过参考博客链接查看） 七、学习”漏洞”函数（自行通过参考博客链接查看） 八、代码审计总">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计初探(初窥门径-1)">
 <meta property="og:url" content="http://example.com/2022/02/04/8-phpCodeAuditLearn/index.html">
 <meta property="og:site_name" content="DemonJoe_Blog">
-<meta property="og:description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 ##目录 一、代码审计基础 二、代码审计思路 三、PHP核心配置（自行通过参考博客链接查看） 四、代码审计环境（自行通过参考博客链接查看） 五、手动调试代码（自行通过参考博客链接查看） 六、PHP的弱类型（自行通过参考博客链接查看） 七、学习”漏洞”函数（自行通过参考博客链接查看） 八、代码">
+<meta property="og:description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 目录一、代码审计基础 二、代码审计思路 三、PHP核心配置（自行通过参考博客链接查看） 四、代码审计环境（自行通过参考博客链接查看） 五、手动调试代码（自行通过参考博客链接查看） 六、PHP的弱类型（自行通过参考博客链接查看） 七、学习”漏洞”函数（自行通过参考博客链接查看） 八、代码审计总">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-04T13:54:15.951Z">
-<meta property="article:modified_time" content="2022-02-04T16:58:14.310Z">
+<meta property="article:modified_time" content="2022-02-05T15:34:31.547Z">
 <meta property="article:author" content="Demon Joe">
 <meta name="twitter:card" content="summary">
 
@@ -434,8 +434,7 @@
 
       
         <p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
-<p>##<strong>目录</strong></p>
-<p>一、代码审计基础</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h2><p>一、代码审计基础</p>
 <p>二、代码审计思路</p>
 <p>三、PHP核心配置<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>四、代码审计环境<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
@@ -443,8 +442,7 @@
 <p>六、PHP的弱类型<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>七、学习”漏洞”函数<font color=red><strong>（自行通过参考博客链接查看）</strong></font></p>
 <p>八、代码审计总结</p>
-<p>##<strong>一、代码审计基础</strong></p>
-<p>代码审计两种基本方式：</p>
+<h2 id="一、代码审计基础"><a href="#一、代码审计基础" class="headerlink" title="一、代码审计基础"></a><strong>一、代码审计基础</strong></h2><p>代码审计两种基本方式：</p>
 <pre><code>●通读全文源码：通读全文发作为一种最麻烦的方法也是最全面的审计方法。特别是针对大型程序，源码成千上万行。当然了解整个Web应用的业务逻辑，才能
 挖掘到更多更有价值的漏洞。
 ●功能点审计：根据漏洞对应发生函数进行功能行审计，常会用到逆向溯源数据流方法进行审计。
@@ -457,21 +455,14 @@
 <pre><code>●单入口cms：不管访问哪个模块都使用同一个入口文件，常见的MVC框架采用这种模式。
 ●多入口cms：每个模块都有一个入口文件(可以前端设置一个入口文件 index.php，后端创建一个入口文件admin.php，前后端的入口文件是独立的)。
 </code></pre>
-<p>##<strong>二、代码审计思路</strong></p>
-<p>接下来我们从三个层次开始我们的源码审计思路：</p>
+<h2 id="二、代码审计思路"><a href="#二、代码审计思路" class="headerlink" title="二、代码审计思路"></a><strong>二、代码审计思路</strong></h2><p>接下来我们从三个层次开始我们的源码审计思路：</p>
 <pre><code>1.确定要审计的源码是什么语言
 
 2.确定该源码是单入口还是多入口
 
 3.确定该语言的各种漏洞诞生的函数
 </code></pre>
-<p>##<strong>三、PHP核心配置：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>四、代码审计环境：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>五、手动调试代码：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>六、PHP的弱类型：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>七、学习”漏洞”函数：<font color=red>通过转载博客链接自行查看</font></strong></p>
-<p>##<strong>八、审计路线总结:审计路线：</strong></p>
-<p><font color=red><em><strong><strong>Demo-&gt;综合漏洞靶场-&gt;网上审计过的CMS-&gt;多入口CMS-&gt;单入口CMS-&gt;框架-&gt;函数缺陷</strong></strong></em></font></p>
+<h2 id="三、PHP核心配置：通过转载博客链接自行查看"><a href="#三、PHP核心配置：通过转载博客链接自行查看" class="headerlink" title="三、PHP核心配置：通过转载博客链接自行查看"></a><strong>三、PHP核心配置：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="四、代码审计环境：通过转载博客链接自行查看"><a href="#四、代码审计环境：通过转载博客链接自行查看" class="headerlink" title="四、代码审计环境：通过转载博客链接自行查看"></a><strong>四、代码审计环境：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="五、手动调试代码：通过转载博客链接自行查看"><a href="#五、手动调试代码：通过转载博客链接自行查看" class="headerlink" title="五、手动调试代码：通过转载博客链接自行查看"></a><strong>五、手动调试代码：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="六、PHP的弱类型：通过转载博客链接自行查看"><a href="#六、PHP的弱类型：通过转载博客链接自行查看" class="headerlink" title="六、PHP的弱类型：通过转载博客链接自行查看"></a><strong>六、PHP的弱类型：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="七、学习”漏洞”函数：通过转载博客链接自行查看"><a href="#七、学习”漏洞”函数：通过转载博客链接自行查看" class="headerlink" title="七、学习”漏洞”函数：通过转载博客链接自行查看"></a><strong>七、学习”漏洞”函数：<font color=red>通过转载博客链接自行查看</font></strong></h2><h2 id="八、审计路线总结-审计路线："><a href="#八、审计路线总结-审计路线：" class="headerlink" title="八、审计路线总结:审计路线："></a><strong>八、审计路线总结:审计路线：</strong></h2><p><font color=red><em><strong><strong>Demo-&gt;综合漏洞靶场-&gt;网上审计过的CMS-&gt;多入口CMS-&gt;单入口CMS-&gt;框架-&gt;函数缺陷</strong></strong></em></font></p>
 <p><strong>推荐一些demo：</strong></p>
 <pre><code>https://github.com/bowu678/php_bugs
 
@@ -580,8 +571,17 @@ https://github.com/SukaraLin/php_code_audit_project
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -636,6 +636,22 @@ https://github.com/SukaraLin/php_code_audit_project
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">一、代码审计基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">二、代码审计思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81PHP%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%EF%BC%9A%E9%80%9A%E8%BF%87%E8%BD%AC%E8%BD%BD%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5%E7%9C%8B"><span class="nav-number">4.</span> <span class="nav-text">三、PHP核心配置：通过转载博客链接自行查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E7%8E%AF%E5%A2%83%EF%BC%9A%E9%80%9A%E8%BF%87%E8%BD%AC%E8%BD%BD%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5%E7%9C%8B"><span class="nav-number">5.</span> <span class="nav-text">四、代码审计环境：通过转载博客链接自行查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%89%8B%E5%8A%A8%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81%EF%BC%9A%E9%80%9A%E8%BF%87%E8%BD%AC%E8%BD%BD%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5%E7%9C%8B"><span class="nav-number">6.</span> <span class="nav-text">五、手动调试代码：通过转载博客链接自行查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81PHP%E7%9A%84%E5%BC%B1%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%9A%E8%BF%87%E8%BD%AC%E8%BD%BD%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5%E7%9C%8B"><span class="nav-number">7.</span> <span class="nav-text">六、PHP的弱类型：通过转载博客链接自行查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AD%A6%E4%B9%A0%E2%80%9D%E6%BC%8F%E6%B4%9E%E2%80%9D%E5%87%BD%E6%95%B0%EF%BC%9A%E9%80%9A%E8%BF%87%E8%BD%AC%E8%BD%BD%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5%E7%9C%8B"><span class="nav-number">8.</span> <span class="nav-text">七、学习”漏洞”函数：通过转载博客链接自行查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%AE%A1%E8%AE%A1%E8%B7%AF%E7%BA%BF%E6%80%BB%E7%BB%93-%E5%AE%A1%E8%AE%A1%E8%B7%AF%E7%BA%BF%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">八、审计路线总结:审计路线：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

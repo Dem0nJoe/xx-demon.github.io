@@ -86,12 +86,12 @@
 
 
 
-<meta name="description" content="#写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还">
+<meta name="description" content="写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ksweb搭建Web服务器+Termux、Ngrok实现内网穿透">
 <meta property="og:url" content="http://example.com/2022/02/01/2-phoneWeb/index.html">
 <meta property="og:site_name" content="DemonJoe_Blog">
-<meta property="og:description" content="#写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还">
+<meta property="og:description" content="写在前面:废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？ 当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站 之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器 当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/1-phone.png">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/2-ksWebConfig.png">
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/9-pythonNgroc.png">
 <meta property="og:image" content="http://example.com/images/2-phoneWeb/10-endWebIndex.png">
 <meta property="article:published_time" content="2022-02-01T11:01:28.769Z">
-<meta property="article:modified_time" content="2022-02-04T16:52:32.465Z">
+<meta property="article:modified_time" content="2022-02-05T15:33:17.718Z">
 <meta property="article:author" content="Demon Joe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/2-phoneWeb/1-phone.png">
@@ -444,11 +444,11 @@
       
 
       
-        <p>#写在前面:<br>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面:"></a>写在前面:</h1><p>废旧智能手机除了能换盆O(∩_∩)O哈哈~，还能有什么其他存在的价值吗？</p>
 <p>当然也可以作为砖头(#^.^#)本篇博客介绍利用废旧手机搭建一个服务器，可以放自己的网页搭建网站</p>
 <p>之前闲着没事，低价买了个虚拟主机，放了自己的静态网页，搭建了个人博客引导网站，后来虚拟主机被打死，凑巧了解到相关知识，于是就想利用废旧手机搭建一台服务器</p>
 <p>当然旧手机作为服务器搭建简单网站性能方面还是可以的，如果商用还是选择购买云主机</p>
-<p>#基本思路：<br>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
+<h1 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h1><p>安卓手机是基于Linux的，也就是说安卓手机本身就是一台Linux服务器，我们只要简单配置，就可以把它可以变成一台网站服务器</p>
 <p>完成第一阶段此时的服务器还只是一个内网服务器，就是只能在一个局域网内访问该服务器的Web服务</p>
 <p>而我们要想外网能访问我们的内网服务器，需要进行内网穿透</p>
 <p>当然能在手机上搭建Web服务器的App很多，像ksweb、Linux Deploy、termux、busybox等等</p>
@@ -465,8 +465,7 @@
     ●ngrok隧道
 </code></pre>
 <span id="more"></span>
-<p>#开始<br>##<strong>第一阶段：手机的简单设置搭建内网服务器</strong></p>
-<p><strong>1.1 手机安装ksweb</strong></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="第一阶段：手机的简单设置搭建内网服务器"><a href="#第一阶段：手机的简单设置搭建内网服务器" class="headerlink" title="第一阶段：手机的简单设置搭建内网服务器"></a><strong>第一阶段：手机的简单设置搭建内网服务器</strong></h2><p><strong>1.1 手机安装ksweb</strong></p>
 <p>我的手机型号是小米4</p>
 <p><img src="/./images/2-phoneWeb/1-phone.png" alt="手机配置"></p>
 <p><strong>工具ksweb</strong></p>
@@ -486,7 +485,7 @@
 <p>我的网页为简单的静态个人网页，不需要php、Mysql等服务，不在详细介绍此方面的配置问题</p>
 <p>关于简单的数据库、phpAdmin配置，在软件中右滑找到工具界面，点击phpAdmin，选择默认的Lighttpd服务器，等待下载完成，进入可视化数据库管理页面，输入用户名root，密码空，点击执行 登录，然后修改密码</p>
 <p>当然此时只能在一个局域网下访问，若想公网访问，需要进行第二阶段，内网穿透</p>
-<p>##<strong>第二阶段：内网穿透</strong><br><strong>2.1电脑端操作</strong><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
+<h2 id="第二阶段：内网穿透"><a href="#第二阶段：内网穿透" class="headerlink" title="第二阶段：内网穿透"></a><strong>第二阶段：内网穿透</strong></h2><p><strong>2.1电脑端操作</strong><br>电脑端首先去Ngrok官网注册一个账号，购买（有免费可以白嫖的隧道）开通隧道 <a target="_blank" rel="noopener" href="http://ngrok.cc/user.html">http://ngrok.cc/user.html</a></p>
 <p><img src="/./images/2-phoneWeb/6-ngroc.png" alt="Ngroc隧道配置"></p>
 <p>开通之后点击 隧道管理</p>
 <p><img src="/./images/2-phoneWeb/7-ngrocManager.png" alt="Ngroc隧道管理"></p>
@@ -611,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -667,6 +675,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">基本思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%89%8B%E6%9C%BA%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%BE%E7%BD%AE%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">第一阶段：手机的简单设置搭建内网服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-number">3.2.</span> <span class="nav-text">第二阶段：内网穿透</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
