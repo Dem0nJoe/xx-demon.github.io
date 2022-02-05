@@ -305,6 +305,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/05/9-phpCodeAuditLearn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ju.jfif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DemonJoe_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/05/9-phpCodeAuditLearn/" itemprop="url">代码审计初探(初窥门径-2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-05T23:12:10+08:00">
+                2022-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  516 words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
+<p>#<strong>php代码审计之无框架SQL注入挖掘</strong></p>
+<p>1、漏洞产生的根本原因</p>
+<pre><code>a、可控变量：决定是否可以传递Payload
+b、特定漏洞函数：决定产生什么漏洞
+</code></pre>
+<p>2、漏洞挖掘思路</p>
+<p>◎定点挖掘关键字：</p>
+<pre><code>a、通过特定函数寻找特定漏洞：
+    I、搜索echo/print尝试挖掘的就是XSS漏洞
+    II、搜索$_GET/$_POST尝试挖掘的就是安全漏洞
+
+b、通过特定关键字：
+    I、select/insert/update     SQL执行语句===SQL注入漏洞
+</code></pre>
+<p>◎定点挖掘功能点：</p>
+<pre><code>如：挖掘文件上传，会员中心存在文件上传操作，抓包分析找到源码中的特定文件代码段，进行文件上传代码的分析
+</code></pre>
+<p>◎拓展：</p>
+<pre><code>a、SQL注入挖掘中：数据库监控工具分析当前页面和数据库的交互（SQL语句）
+b、断点调试：访问页面对应代码进行断点调试（分析过程和调用文件）
+</code></pre>
+<p>3、SQL注入漏洞挖掘实践总结</p>
+<p>无框架SQL注入漏洞：</p>
+<pre><code>◎select等关键字-&gt;可控变量-&gt;函数定位-&gt;使用位置定位-&gt;绕过验证-&gt;确定SQL语句执行
+◎CMS每页都有转义-&gt;二次注入点/宽字节注入-&gt;确定SQL语句执行
+◎CMS有转义+过滤-&gt;断点调试(查全过程，并给出绕过方案)-&gt;确定SQL语句执行
+</code></pre>
+<p>4、本次漏洞审计学习源码为”GET_无框架_SQL注入”web源码和”POST_无框架_二阶注入”web源码，目前已上传至博主Github仓库，需要的点下面Github链接.</p>
+<p>博主代码审计学习所用SQL注入漏洞web源码：<font color=red><strong><a target="_blank" rel="noopener" href="https://github.com/xx-demon/sourceCodeOfCodeAudit.git">https://github.com/xx-demon/sourceCodeOfCodeAudit.git</a></strong></font></p>
+<p>注：<strong>源码为个人收集，并非视频展示源码</strong></p>
+<p>学习视频参考链接：<font color=red><strong><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/04/8-phpCodeAuditLearn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2237,7 +2446,7 @@ if __name__ == &quot;__main__&quot;:
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2301,7 +2510,7 @@ if __name__ == &quot;__main__&quot;:
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.1k</span>
+    <span title="Site words total count">5.7k</span>
   
 </div>
 
