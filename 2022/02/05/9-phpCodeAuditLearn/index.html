@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II、搜">
+<meta name="description" content="今天看了下SQL注入的无框架挖掘，特此记录一下收获。还有就是下方漏洞web源码有需要的自取，不谢(￣_,￣ ) php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计初探(初窥门径-2)">
 <meta property="og:url" content="http://example.com/2022/02/05/9-phpCodeAuditLearn/index.html">
 <meta property="og:site_name" content="DemonJoe_Blog">
-<meta property="og:description" content="今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。 php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II、搜">
+<meta property="og:description" content="今天看了下SQL注入的无框架挖掘，特此记录一下收获。还有就是下方漏洞web源码有需要的自取，不谢(￣_,￣ ) php代码审计之无框架SQL注入挖掘1、漏洞产生的根本原因 a、可控变量：决定是否可以传递Payload b、特定漏洞函数：决定产生什么漏洞  2、漏洞挖掘思路 ◎定点挖掘关键字： a、通过特定函数寻找特定漏洞：     I、搜索echo&#x2F;print尝试挖掘的就是XSS漏洞     II">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-05T15:12:10.057Z">
-<meta property="article:modified_time" content="2022-02-05T15:32:25.499Z">
+<meta property="article:modified_time" content="2022-02-05T15:37:34.654Z">
 <meta property="article:author" content="Demon Joe">
 <meta name="twitter:card" content="summary">
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  515 words
+                  509 words
                 </span>
               
 
@@ -433,7 +433,7 @@
       
 
       
-        <p><strong>今天正式进行代码审计的自学进修，初步看了别人写的一篇代码审计入门的帖子，还是有所感触、总结，特此记录下来。</strong></p>
+        <p><strong>今天看了下SQL注入的无框架挖掘，特此记录一下收获。还有就是下方漏洞web源码有需要的自取，不谢(￣_,￣ )</strong></p>
 <h1 id="php代码审计之无框架SQL注入挖掘"><a href="#php代码审计之无框架SQL注入挖掘" class="headerlink" title="php代码审计之无框架SQL注入挖掘"></a><strong>php代码审计之无框架SQL注入挖掘</strong></h1><p>1、漏洞产生的根本原因</p>
 <pre><code>a、可控变量：决定是否可以传递Payload
 b、特定漏洞函数：决定产生什么漏洞
