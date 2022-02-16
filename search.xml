@@ -592,4 +592,102 @@ b、断点调试：访问页面对应代码进行断点调试（分析过程和�
         <category>代码审计</category>
       </categories>
   </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-3)</title>
+    <url>/2022/02/16/10-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="php文件上传-MVC架构类断点调试"><a href="#php文件上传-MVC架构类断点调试" class="headerlink" title="php文件上传+MVC架构类断点调试"></a><strong>php文件上传+MVC架构类断点调试</strong></h1><p>1、关键字搜索：（函数，关键字，全局变量）<br>◎move_uploaded_file<br>◎文件上传等注释文字<br>◎$_FILES等全局变量</p>
+<p>2、应用功能抓包：（任何可能存在上传的应用功能点）<br>◎前台会员中心<br>◎后台新闻添加等可能存在上传的地方</p>
+<p>注：代码中上传过滤函数检测后缀无法绕过，则无上传漏洞</p>
+<p>3、实践内容：<br>◎beeCMS(无框架)后台文件上传漏洞<br>—学习传统代码漏洞代码位置<br>a、漏洞1<br>admin&#x2F;admin_pic.php页面图片更新MIME验证绕过<br>b、漏洞2<br>admin&#x2F;admin_pic_upload.php存在文件上传MIME绕过漏洞</p>
+<p>◎MVC架构FineCMS文件上传漏洞(版本：5.0.10)<br>    —学习如何定位框架中代码的位置<br>    —漏洞根源：先上传，后验证 逻辑问题导致上传漏洞<br>a、文件上传漏洞(未验证过滤)<br><a href="http://192.168.152.1/index.php?s=member&amp;c=account&amp;m=avatar">http://192.168.152.1/index.php?s=member&amp;c=account&amp;m=avatar</a><br>上传后木马位置为：<br><a href="http://192.168.152.1/cache/file/member/1/0x0.php">http://192.168.152.1/cache/file/member/1/0x0.php</a></p>
+<p>◎ThinkPHP框架CLTPHP CMS(环境问题，上传图片接口损坏，无法复现)<br>    —漏洞根源：会员图片上传部位没有引用ThinkPHP5的验证代码</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15166236.html">https://www.cnblogs.com/zhengna/p/15166236.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-6)</title>
+    <url>/2022/02/16/13-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="php项目TP5审计分析与代码追踪写法"><a href="#php项目TP5审计分析与代码追踪写法" class="headerlink" title="php项目TP5审计分析与代码追踪写法"></a><strong>php项目TP5审计分析与代码追踪写法</strong></h1><p>1、TP5写法分析<br>a、自写写法<br>    —常规审计流程<br>b、不安全写法（未全部引用内置过滤）<br>    —跟踪调试<br>c、规则写法（引用内置过滤）<br>    —寻找对应版本<br>    —对应版本安全问题<br>    —框架内置过滤问题</p>
+<p>2、TP5自定义开发后路由规则学习</p>
+<p>3、MySQL Monitor配合TP5监控数据库执行语句（有些语句其它工具无法监测）<br>4、TP框架分析思路<br>a、入口调试，路由分析<br>b、分析写法（全部可以利用提交测试数据查看是否可控）<br>◎自写代码<br>◎不安全代码<br>◎规矩代码<br>    —查对应版本<br>    —自己挖</p>
+<p>5、TP框架核心漏洞分析思路<br>    —通过官网Github上更新的说明查commit（如说明上一版本有安全问题等）<br>—什么都没有，纯手工挖掘</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15179395.html">https://www.cnblogs.com/zhengna/p/15179395.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-4)</title>
+    <url>/2022/02/16/11-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="php项目RCE-文件包含-下载-删除"><a href="#php项目RCE-文件包含-下载-删除" class="headerlink" title="php项目RCE_文件包含_下载_删除"></a><strong>php项目RCE_文件包含_下载_删除</strong></h1><p>漏洞关键字：<br>    SQL注入：select insert update mysql_query mysqli等<br>    文件上传：$_FILES，type&#x3D;”file”，上传，move_uploaded_file()等<br>    XSS跨站：print print_r echo sprintf die var_dump var_export等<br>    文件包含：Include include_once require require_once等<br>    代码执行：eval,preg_replace+&#x2F;e,assert,call_user_func,call_user_func_array,create_function等<br>    命令执行：system exec shell_exec &#96;&#96; passthru pcntl_exec popen proc_open<br>    变量覆盖：extract() parse_str() importrequestvariables() $$等<br>    反序列化：serialize() unserialize() _construct _destruct等<br>    其他漏洞：unlink() file_get_contents() show_source() file fopen()等<br>    通用关键字：$_GET $_POST $_REQUEST $_FILES $_SEVER等</p>
+<p>1、php项目xhcms框架漏洞<br>文件包含漏洞<br>a、魔术引号&#x3D;off 且 php版本&lt;5.3.4时，文件MVC类框架”加.php”后缀 形式可用00截断绕过(没成功过)<br>b、长度截断：条件：windows 点号需要长于256； Linux需要长于4096(phpstudy版本&lt;&#x3D;2018且php版本&lt;5.3.4)<br>◎跨站漏洞<br>a、使用echo等关键函数或从web界面查找功能点 然后定位代码<br>漏洞地址：<a href="http://192.168.152.1/xhcms_FileInclude/?r=contact&amp;page=1">http://192.168.152.1/xhcms_FileInclude/?r=contact&amp;page=1</a><script>alert(1)</script><br>2、php项目earmusic框架漏洞<br>◎文件下载漏洞<br>漏洞地址：<a href="http://192.168.152.1/earmusiccms_filedownload/user.php/music/edit/2/">http://192.168.152.1/earmusiccms_filedownload/user.php/music/edit/2/</a></p>
+<p>3、php项目zzzcms框架漏洞<br>◎文件删除(unlink函数)<br>    —如果漏洞在admin目录下，需要登录后才能复现<br>    测试版本已没有删除漏洞！！！<br>◎RCE漏洞<br>    {if:assert($_POST[x])}x{end if}<br>    —复现实践！！！</p>
+<p>注：代码审计挖掘流程<br>◎功能点或关键字分析可能存在的漏洞<br>◎抓包或搜索关键字找到代码出处及对应文件<br>◎追踪过滤或接受的数据函数<br>◎寻找触发此函数或代码的地方进行触发测试</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15166967.html">https://www.cnblogs.com/zhengna/p/15166967.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-7)</title>
+    <url>/2022/02/16/14-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="Java项目-注入-上传-插件挖掘"><a href="#Java项目-注入-上传-插件挖掘" class="headerlink" title="Java项目_注入_上传_插件挖掘"></a><strong>Java项目_注入_上传_插件挖掘</strong></h1><p>1、JavaWeb的执行流程学习</p>
+<p>2、Java预编译机制<br>一般用于防止SQL注入</p>
+<p>3、IDE审计插件FindBugs安装使用</p>
+<p>4、Fortify_SCAN代码自动审计神器使用</p>
+<p>5、IDEA手动审计的”全局搜索”与”审计追踪”（配合burp定位代码位置）<br>    —通过update等关键字审计注入漏洞等<br>—通过功能点找文件上传等漏洞</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15180025.html">https://www.cnblogs.com/zhengna/p/15180025.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-8)</title>
+    <url>/2022/02/16/15-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="Java项目-filter过滤器-xss挖掘"><a href="#Java项目-filter过滤器-xss挖掘" class="headerlink" title="Java项目_filter过滤器_xss挖掘"></a><strong>Java项目_filter过滤器_xss挖掘</strong></h1><p>1、在哪个地方查看fiter,并了解结构构成</p>
+<p>2、filter内部地址、外部地址了解</p>
+<p>3、Struts2框架的filter构成、指向、配置、核心代码等</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15188128.html">https://www.cnblogs.com/zhengna/p/15188128.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-9)</title>
+    <url>/2022/02/16/16-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="Java项目框架类漏洞分析报告"><a href="#Java项目框架类漏洞分析报告" class="headerlink" title="Java项目框架类漏洞分析报告"></a><strong>Java项目框架类漏洞分析报告</strong></h1><p>1、Struts2-016漏洞原理<br>  通过ongi表达式(类似php中的eval) + 执行流程 绕过框架的过滤与拦截<br>2、Spring框架漏洞</p>
+<p>总结：<br>a、先确定源码中是否存在框架—执行流程、特性(表达式)<br>已知的框架版本漏洞利用<br>b、确定源码中是否存在过滤器—自带还是自写的拦截器规则<br>c、过滤器中怎么触发，过滤器规则</p>
+<p>注：攻击JavaWeb应用1-9</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15190343.html">https://www.cnblogs.com/zhengna/p/15190343.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>代码审计初探(初窥门径-5)</title>
+    <url>/2022/02/16/12-phpCodeAuditLearn/</url>
+    <content><![CDATA[<h1 id="php项目变量覆盖-反序列化"><a href="#php项目变量覆盖-反序列化" class="headerlink" title="php项目变量覆盖_反序列化"></a><strong>php项目变量覆盖_反序列化</strong></h1><p>1、变量覆盖漏洞（配合其它漏洞使用）<br>a、漏洞点所在文件需要包含接受所有变量的代码文件<br>b、漏洞点需要有包含函数，并且有可变变量</p>
+<p>2、反序列化漏洞（配合其它漏洞使用）<br>a、serialize&#x2F;unserialize使用时触发的魔术引号函数（如__wakeup函数里面有可利用的代码，例：使用了eval，include函数等）</p>
+<p>3、ThinkPHP5学习<br>a、路径访问方式学习<br>b、自带数据库调试工具<br>c、ThinkPHP5代码审计思路<br>注：Github上Thinkphp-vuln的学习</p>
+<p>学习视频参考链接：<br><font color=red><strong><a href="https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert">https://www.bilibili.com/video/BV1hb4y1H791?p=2&amp;spm_id_from=pageDrivert</a></strong></font></p>
+<p>视频笔记参考链接：<br><font color=red><strong><a href="https://www.cnblogs.com/zhengna/p/15175262.html">https://www.cnblogs.com/zhengna/p/15175262.html</a></strong></font></p>
+]]></content>
+      <categories>
+        <category>代码审计</category>
+      </categories>
+  </entry>
 </search>
